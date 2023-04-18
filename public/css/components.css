@@ -1,0 +1,12 @@
+/* MENU */
+.menu {
+    background-color: var(--dark-grey);
+    width: 400px;
+    height: 100%;
+}
+.menu-content {
+    padding: 50px;
+}
+.menu-content-logo {
+    width: 100%;
+}
