@@ -1,0 +1,28 @@
+/*****************   ROOT   *****************/
+:root {
+    --white: #FFFFFF;
+    --black: #242424;
+    --dark-grey: #313131;
+    --light-grey: #454545;
+    --blue: #646CFF;
+    --red: #6E3630;
+    --orange: #89632A;
+    --green: #2B593F;
+}
+
+/*****************   BODY   *****************/
+body {
+    background-color: var(--black);
+    margin: 0;
+}
+
+/*****************   APP   *****************/
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+/*****************   DEFAULT   *****************/
+h1, h2, h3, p {
+    margin: 0;
+}
