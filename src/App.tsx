@@ -1,9 +1,9 @@
-import { Menu } from "./components/Menu";
+import {BasicMenu} from "./components/BasicMenu";
 
 function App() {
-  return <div className="app">
-    <Menu />
-  </div>;
+    return <div className="app">
+        <BasicMenu />
+    </div>;
 }
 
 export default App;

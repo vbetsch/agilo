@@ -1,7 +1,13 @@
+/* APP */
+.app {
+    display: flex;
+    height: 100vh;
+}
+
 /* MENU */
 .menu {
     background-color: var(--dark-grey);
-    width: 400px;
+    width: 300px;
     height: 100%;
 }
 .menu-content {
@@ -9,4 +15,36 @@
 }
 .menu-content-logo {
     width: 100%;
+}
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* MENU ITEM */
+.menu-item {
+    padding: 0 40px;
+}
+/*.menu-item:active {
+    background-color: var(--blue);
+}*/
+.menu-item-text:hover {
+    opacity: 0.8;
+}
+.menu-item-content {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 10px;
+}
+.menu-item-svg {
+    height: 20px;
+}
+.menu-item-img {
+    height: 25px;
+    border-radius: 15px;
+}
+.menu-item-text {
+    font-size: 20px;
 }

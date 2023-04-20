@@ -13,13 +13,10 @@
 /*****************   BODY   *****************/
 body {
     background-color: var(--black);
+    font-family: Poppins, sans-serif;
+    color: var(--white);
+    user-select: none;
     margin: 0;
-}
-
-/*****************   APP   *****************/
-.app {
-    display: flex;
-    height: 100vh;
 }
 
 /*****************   DEFAULT   *****************/
