@@ -1,9 +1,13 @@
-/*****************   PAGES   *****************/
+/*****************   TEMPLATES   *****************/
 /* PAGE */
 .page {
     display: flex;
     height: 100vh;
 }
+.page-content {
+    width: 100%;
+}
+
 /* CARD */
 .card {
     display: grid;
@@ -27,6 +31,73 @@
 .auth-logo {
     height: 80px;
     width: auto;
+}
+
+/*****************   BASICS   *****************/
+.button {
+    background: linear-gradient(265.71deg, #1C5BFF 8.3%, #551AFF 95.71%);
+    border: none;
+    padding: 7px 30px;
+    border-radius: 30px;
+}
+.button:hover {
+    background: linear-gradient(265.71deg, #551AFF 8.3%, #1C5BFF 95.71%);
+}
+.button-text {
+    border: none;
+    background-color: transparent;
+    color: var(--white);
+    font-size: 17px;
+}
+
+/*****************   SPECIALS   *****************/
+/* MENU */
+.menu {
+    background-color: var(--dark-grey);
+    width: 350px;
+    height: 100%;
+}
+.menu-content {
+    padding: 50px;
+}
+.menu-content-logo {
+    width: 100%;
+}
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* MENU ITEM */
+.menu-item {
+    padding: 0 40px;
+}
+/*.menu-item:active {
+    background-color: var(--blue);
+}*/
+.menu-item-text:hover {
+    opacity: 0.8;
+}
+.menu-item-content {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 10px;
+}
+.menu-item-link {
+    text-decoration: none;
+    color: var(--white);
+}
+.menu-item-svg {
+    height: 20px;
+}
+.menu-item-img {
+    height: 25px;
+    border-radius: 15px;
+}
+.menu-item-text {
+    font-size: 20px;
 }
 
 /* FORM */
@@ -59,67 +130,4 @@
 .form-validate {
     display: grid;
     place-items: center;
-}
-
-/*****************   BASICS   *****************/
-.button {
-    background: linear-gradient(265.71deg, #1C5BFF 8.3%, #551AFF 95.71%);
-    border: none;
-    padding: 7px 30px;
-    border-radius: 30px;
-}
-.button:hover {
-    background: linear-gradient(265.71deg, #551AFF 8.3%, #1C5BFF 95.71%);
-}
-.button-text {
-    border: none;
-    background-color: transparent;
-    color: var(--white);
-    font-size: 17px;
-}
-
-/*****************   LAYOUTS   *****************/
-/* MENU */
-.menu {
-    background-color: var(--dark-grey);
-    width: 300px;
-    height: 100%;
-}
-.menu-content {
-    padding: 50px;
-}
-.menu-content-logo {
-    width: 100%;
-}
-.menu-items {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* MENU ITEM */
-.menu-item {
-    padding: 0 40px;
-}
-/*.menu-item:active {
-    background-color: var(--blue);
-}*/
-.menu-item-text:hover {
-    opacity: 0.8;
-}
-.menu-item-content {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 10px;
-}
-.menu-item-svg {
-    height: 20px;
-}
-.menu-item-img {
-    height: 25px;
-    border-radius: 15px;
-}
-.menu-item-text {
-    font-size: 20px;
 }
