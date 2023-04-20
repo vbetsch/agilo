@@ -13,7 +13,69 @@
     justify-content: center;
 }
 .card-content {
+    background-color: var(--dark-grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 35px;
+    border-radius: 50px;
+    gap: 40px;
+}
+
+/* AUTH */
+.auth-logo {
+    height: 80px;
+    width: auto;
+}
+
+/* FORM */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.form-input {
     background-color: var(--light-grey);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    outline: none;
+    border-radius: 30px;
+}
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+.form-validate {
+    display: grid;
+    place-items: center;
+}
+
+/*****************   BASICS   *****************/
+.button {
+    background: linear-gradient(265.71deg, #1C5BFF 8.3%, #551AFF 95.71%);
+    border: none;
+    padding: 7px 30px;
+    border-radius: 30px;
+}
+.button:hover {
+    background: linear-gradient(265.71deg, #551AFF 8.3%, #1C5BFF 95.71%);
+}
+.button-text {
+    border: none;
+    background-color: transparent;
+    color: var(--white);
+    font-size: 17px;
 }
 
 /*****************   LAYOUTS   *****************/
