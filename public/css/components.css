@@ -1,9 +1,22 @@
-/* APP */
-.app {
+/*****************   PAGES   *****************/
+/* PAGE */
+.page {
     display: flex;
     height: 100vh;
 }
+/* CARD */
+.card {
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    place-items: center;
+    justify-content: center;
+}
+.card-content {
+    background-color: var(--light-grey);
+}
 
+/*****************   LAYOUTS   *****************/
 /* MENU */
 .menu {
     background-color: var(--dark-grey);

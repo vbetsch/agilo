@@ -1,8 +1,9 @@
-import {BasicMenu} from "./components/BasicMenu";
+import {RouterProvider} from "react-router-dom";
+import {Router} from "./Router";
 
 function App() {
     return <div className="app">
-        <BasicMenu />
+        <RouterProvider router={Router} />
     </div>;
 }
 
