@@ -1,4 +1,4 @@
-import AuthPage from "../components/pages/AuthPage";
+import AuthPage from "../components/templates/AuthPage";
 
 export default function RegisterPage() {
     return (

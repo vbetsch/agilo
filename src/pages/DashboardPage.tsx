@@ -1,4 +1,4 @@
-import {InternPage} from "../components/pages/InternPage";
+import {InternPage} from "../components/templates/InternPage";
 
 export default function DashboardPage() {
     return (
