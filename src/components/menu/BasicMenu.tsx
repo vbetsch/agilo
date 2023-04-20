@@ -5,11 +5,13 @@ export function BasicMenu() {
         <Menu items={[
             {
                 img: "/img/harry.jpg",
-                text: "Profile"
+                text: "Profile",
+                href: "/profile"
             },
             {
                 img: "/svg/home.svg",
-                text: "Dashboard"
+                text: "Dashboard",
+                href: "/dashboard"
             },
             {
                 img: "/svg/project.svg",
