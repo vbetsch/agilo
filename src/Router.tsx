@@ -1,8 +1,9 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+// import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
+import RegisterTestPage from "./pages/RegisterTestPage";
 
 /*const userLoader = async () => {
     const user = await getUser();
@@ -24,7 +25,7 @@ export const Router = createBrowserRouter([
     },
     {
         path: "/register",
-        element: <RegisterPage />
+        element: <RegisterTestPage />
     },
     {
         path: "/profile",

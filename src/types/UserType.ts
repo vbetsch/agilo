@@ -3,7 +3,7 @@ import type {Task} from "./TaskType";
 import type {Notification} from "./NotificationType";
 
 export interface User {
-    id: string,
+    id?: string,
     mail: string,
     authenticationString: string,
     firstname: string,

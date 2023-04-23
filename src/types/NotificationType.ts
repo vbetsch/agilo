@@ -4,7 +4,7 @@ import type {Task} from "./TaskType";
 import type {User} from "./UserType";
 
 export interface Notification {
-    id: string,
+    id?: string,
     type: Action,
     project: Project,
     task: Task,

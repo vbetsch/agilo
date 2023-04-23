@@ -4,7 +4,7 @@ import {Status} from "../enums/Status";
 import type {Project} from "./ProjectType";
 
 export interface Task {
-    id: string,
+    id?: string,
     title: string,
     creator: User,
     creation_date: Date | Timestamp,
