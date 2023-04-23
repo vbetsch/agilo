@@ -16,7 +16,7 @@ export default function RegisterPage() {
                 required: true
             },
             {
-                type: "lastname",
+                type: "email",
                 label: "Email",
                 placeholder: "john.scott@email.com",
                 required: true
