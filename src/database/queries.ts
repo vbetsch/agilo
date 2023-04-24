@@ -9,11 +9,12 @@ import {
     query,
     where,
 } from "firebase/firestore";
-import { db } from "./firebase";
-import { User } from "../types/UserType";
-import { UserActionType } from "../context/UserReducer";
-import { Action } from "../types/ActionType";
-import { NavigateFunction } from "react-router-dom";
+import {db} from "./firebase";
+import {User} from "../types/UserType";
+import {UserActionType} from "../context/UserReducer";
+import {Action} from "../types/ActionType";
+import {NavigateFunction} from "react-router-dom";
+import React from "react";
 
 export const createUser = async (
     firstname: string,
@@ -60,7 +61,7 @@ export const findUser = async (
     navigate: NavigateFunction,
     redirectPath: string
 ) => {
-    
+
     try {
         const docRef = query(
             collection(db, "users"),
@@ -68,21 +69,22 @@ export const findUser = async (
             where("authenticationString", "==", password),
             limit(1)
         );
+
         const users = await getDocs(docRef);
 
-        if (users.size === 1) {
-            let data: DocumentData;
-
-            users.forEach((doc) => {
-                data = doc.data();
-                console.log(data);
-            });
-
-            navigate(redirectPath);
-        } else {
+        if (users.size !== 1) {
             throw new Error("Requested credentials do not match any account");
         }
+
+        let data: DocumentData;
+
+        users.forEach((doc) => {
+            data = doc.data();
+            console.log(data);
+        });
+
+        navigate(redirectPath);
     } catch (e) {
-        console.error(e);
+        throw e;
     }
 };

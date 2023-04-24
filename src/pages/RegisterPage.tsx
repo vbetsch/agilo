@@ -24,7 +24,7 @@ export default function RegisterPage() {
         ) {
             if (password === confirmPassword) {
                 setError("");
-                createUser(firstname, lastname, mail, password, dispatch, navigate, "/login");
+                await createUser(firstname, lastname, mail, password, dispatch, navigate, "/login");
             } else {
                 setError("Passwords fields don't have same values");
             }

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import {useState} from "react";
 import AuthPage from "../components/templates/AuthPage";
-import { findUser } from "../database/queries";
-import { useNavigate } from "react-router-dom";
+import {findUser} from "../database/queries";
+import {useNavigate} from "react-router-dom";
 
 export default function LoginPage() {
     const [mail, setMail] = useState<string>("");
@@ -12,9 +12,13 @@ export default function LoginPage() {
     const testUser = async () => {
         if (mail.length > 0 && password.length > 0) {
             try {
-                findUser(mail, password, navigate, "/dashboard");
-            } catch (error: Error | any) {
-                setError(error.message);
+                await findUser(mail, password, navigate, "/dashboard");
+            } catch (e) {
+                if (e instanceof Error) {
+                    setError(e.message);
+                } else {
+                    console.error(e)
+                }
             }
         } else {
             setError("Please fill in all required fields");
