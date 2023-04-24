@@ -24,7 +24,7 @@ export function Form({ label, fields, error, action }: FormProperties) {
                     />
                 ))}
             </div>
-            <div className="form-errors">
+            <div className="form-error">
                 {error && error.length > 0 && <p>{error}</p>}
             </div>
             <div className="form-validate">

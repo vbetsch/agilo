@@ -61,7 +61,7 @@ export default function RegisterPage() {
                     console.error(e);
                 }
             } else {
-                setError("Password and ConfirmPassword are not same");
+                setError("Passwords fields don't have same values");
             }
         } else {
             setError("Please fill in all required fields");

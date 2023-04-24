@@ -127,6 +127,11 @@
 .form-input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
+.form-error {
+    color: red;
+    font-weight: semibold;
+    width: 30ch;
+}
 .form-validate {
     display: grid;
     place-items: center;
