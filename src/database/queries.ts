@@ -63,7 +63,7 @@ export const findUser = async (
 ) => {
 
     try {
-        const docRef = query(
+        const docRef = await query(
             collection(db, "users"),
             where("mail", "==", mail),
             where("authenticationString", "==", password),
@@ -76,7 +76,7 @@ export const findUser = async (
             throw new Error("Requested credentials do not match any account");
         }
 
-        users.forEach((doc) => {
+        await users.forEach((doc) => {
             const user = doc;
             const data = user.data();
             console.log(data);

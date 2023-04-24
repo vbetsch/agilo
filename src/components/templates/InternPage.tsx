@@ -4,14 +4,15 @@ import {UserContext} from "../../context/UserProvider";
 import {useNavigate} from "react-router-dom";
 
 export const InternPage: React.FC<PropsWithChildren> = ({children}) => {
-    const [state,] = useContext(UserContext);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!state.currentUser) {
-            navigate("/login");
-        }
-    }, []);
+    setTimeout(() => {
+        const [state,] = useContext(UserContext);
+        useEffect(() => {
+            if (!state.currentUser) {
+                navigate("/login");
+            }
+        }, []);
+    }, 1000);
 
     return (
         <div className="page">
