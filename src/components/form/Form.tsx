@@ -1,5 +1,6 @@
 // import {useForm} from "react-hook-form";
 import { FormField, FormFieldProperties } from "./FormField";
+import {SubmitButton} from "../buttons/SubmitButton";
 
 interface FormProperties {
     label: string;
@@ -28,20 +29,7 @@ export function Form({ label, fields, error, action }: FormProperties) {
                 {error && error.length > 0 && <p>{error}</p>}
             </div>
             <div className="form-validate">
-                <button 
-                    className="button"
-                    type="submit"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        action();
-                    }}
-                >
-                    <input
-                        className="button-text"
-                        type="submit"
-                        value={label}
-                    />
-                </button>
+                <SubmitButton label={label} action={action} />
             </div>
         </form>
     );

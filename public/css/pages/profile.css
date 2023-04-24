@@ -1,0 +1,34 @@
+.profile-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profile-infos-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.profile-infos-head {
+    display: grid;
+    place-items: center;
+}
+
+.profile-infos-picture {
+    height: 125px;
+    border-radius: 50%;
+}
+
+.profile-infos-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}

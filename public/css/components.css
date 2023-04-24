@@ -7,6 +7,8 @@
 .page-content {
     width: 100%;
 }
+
+/* ERROR */
 .page-error {
     width: 100%;
     display: grid;
@@ -53,19 +55,27 @@
 
 /*****************   BASICS   *****************/
 .button {
-    background: linear-gradient(265.71deg, #1C5BFF 8.3%, #551AFF 95.71%);
     border: none;
-    padding: 7px 30px;
     border-radius: 30px;
-}
-.button:hover {
-    background: linear-gradient(265.71deg, #551AFF 8.3%, #1C5BFF 95.71%);
 }
 .button-text {
     border: none;
     background-color: transparent;
     color: var(--white);
     font-size: 17px;
+}
+
+.submit-button {
+    background: linear-gradient(265.71deg, #1C5BFF 8.3%, #551AFF 95.71%);
+    padding: 7px 30px;
+}
+.submit-button:hover {
+    background: linear-gradient(265.71deg, #551AFF 8.3%, #1C5BFF 95.71%);
+}
+
+.alt-button {
+    background-color: var(--light-grey);
+    padding: 7px 15px;
 }
 
 /*****************   SPECIALS   *****************/

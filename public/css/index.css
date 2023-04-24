@@ -3,3 +3,6 @@
 @import url(main.css);
 @import url(global.css);
 @import url(components.css);
+
+/* PAGES */
+@import url(pages/profile.css);
