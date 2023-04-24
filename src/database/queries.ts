@@ -1,6 +1,5 @@
 import {
     CollectionReference,
-    DocumentData,
     addDoc,
     collection,
     getDoc,
@@ -8,6 +7,7 @@ import {
     limit,
     query,
     where,
+    doc,
 } from "firebase/firestore";
 import {db} from "./firebase";
 import {User} from "../types/UserType";
@@ -58,6 +58,7 @@ export const createUser = async (
 export const findUser = async (
     mail: string,
     password: string,
+    dispatch: React.Dispatch<Action<UserActionType>>,
     navigate: NavigateFunction,
     redirectPath: string
 ) => {
@@ -76,11 +77,19 @@ export const findUser = async (
             throw new Error("Requested credentials do not match any account");
         }
 
-        let data: DocumentData;
-
         users.forEach((doc) => {
-            data = doc.data();
+            const user = doc;
+            const data = user.data();
             console.log(data);
+            if (data) {
+                dispatch({
+                    type: UserActionType.SET_CURRENT_USER,
+                    payload: {
+                        id: user.id,
+                        ...data,
+                    },
+                });
+            }
         });
 
         navigate(redirectPath);
@@ -88,3 +97,21 @@ export const findUser = async (
         throw e;
     }
 };
+
+export const logout = async (userId: string | undefined, dispatch: React.Dispatch<Action<UserActionType>>, navigate: NavigateFunction, redirectPath: string) => {
+    if (userId) {
+        try {
+            const _doc = doc(db, 'users', userId);
+            const user = await getDoc(_doc);
+
+            dispatch({
+                type: UserActionType.SET_CURRENT_USER,
+                payload: undefined,
+            });
+
+            navigate(redirectPath);
+        } catch (e) {
+            throw e;
+        }
+    }
+}
