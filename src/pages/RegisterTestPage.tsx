@@ -14,7 +14,7 @@ const RegisterTestPage: React.FC = () => {
     const [mail, setMail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
-    const [errors, setErrors] = useState<Array<string>>([]);
+    const [error, setError] = useState<string>('');
 
     const navigate = useNavigate();
     const redirect = () => {
@@ -30,7 +30,7 @@ const RegisterTestPage: React.FC = () => {
             && confirmPassword.length > 0
         ) {
             if (password === confirmPassword) {
-                setErrors([]);
+                setError('');
 
                 try {
                     const docRef = await addDoc<User>(collection(db, 'users') as CollectionReference<User>, {
@@ -58,10 +58,10 @@ const RegisterTestPage: React.FC = () => {
                     console.error(e)
                 }
             } else {
-                setErrors([...errors, "Password and ConfirmPassword are not same"])
+                setError("Password and ConfirmPassword are not same")
             }
         } else {
-            setErrors([...errors, "Please fill in all required fields"])
+            setError("Please fill in all required fields")
         }
     }
 
@@ -137,8 +137,8 @@ const RegisterTestPage: React.FC = () => {
                     </div>
                 </div>
                 {
-                    errors.length > 0 && (
-                        <p>{errors[errors.length - 1]}</p>
+                    error.length > 0 && (
+                        <p>{error}</p>
                     )
                 }
                 <div className="form-validate">
