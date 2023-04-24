@@ -11,8 +11,8 @@ export function Menu({items}: MenuProperties) {
                 <img className="menu-content-logo" src="/img/logo.png" alt="logo"/>
             </div>
             <div className="menu-items">
-                {items.map((item) => (
-                    <MenuItem img={item.img} text={item.text} href={item.href}/>
+                {items.map((item, index) => (
+                    <MenuItem key={index} img={item.img} text={item.text} href={item.href}/>
                 ))}
             </div>
         </aside>
