@@ -3,20 +3,16 @@ import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
-
-/*const userLoader = async () => {
-    const user = await getUser();
-    if (!user) {
-        return redirect("/login");
-    }
-    return null;
-};*/
+import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
 
 export const Router = createBrowserRouter([
     {
         path: "*",
-        element: <Navigate to="/login" replace={true} />,
-        // loader: userLoader
+        element: <ErrorNotFoundPage />,
+    },
+    {
+        path: "/",
+        element: <Navigate to="/dashboard" replace={true} />,
     },
     {
         path: "/login",
