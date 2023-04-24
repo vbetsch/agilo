@@ -8,7 +8,7 @@ import {
     getDoc,
 } from "firebase/firestore";
 import { User } from "../types/UserType";
-import { db } from "../config/firebase";
+import { db } from "../database/firebase";
 import { UserActionType } from "../context/UserReducer";
 import { useNavigate } from "react-router-dom";
 

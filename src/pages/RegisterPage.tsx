@@ -1,11 +1,8 @@
 import { useContext, useState } from "react";
 import AuthPage from "../components/templates/AuthPage";
+import { createUser } from "../database/queries"
 import { UserContext } from "../context/UserProvider";
 import { useNavigate } from "react-router-dom";
-import { CollectionReference, addDoc, collection, getDoc } from "firebase/firestore";
-import { User } from "../types/UserType";
-import { db } from "../config/firebase";
-import { UserActionType } from "../context/UserReducer";
 
 export default function RegisterPage() {
     const [, dispatch] = useContext(UserContext);
@@ -15,12 +12,8 @@ export default function RegisterPage() {
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
-
     const navigate = useNavigate();
-    const redirect = () => {
-        navigate("/login");
-    };
-    
+
     const addUser = async () => {
         if (
             firstname.length > 0 &&
@@ -31,35 +24,7 @@ export default function RegisterPage() {
         ) {
             if (password === confirmPassword) {
                 setError("");
-
-                try {
-                    const docRef = await addDoc<User>(
-                        collection(db, "users") as CollectionReference<User>,
-                        {
-                            firstname,
-                            lastname,
-                            mail,
-                            authenticationString: password,
-                        }
-                    );
-
-                    const doc = await getDoc(docRef);
-                    const data = doc.data();
-
-                    if (data) {
-                        dispatch({
-                            type: UserActionType.ADD_USERS,
-                            payload: {
-                                id: doc.id,
-                                ...data,
-                            },
-                        });
-                    }
-
-                    redirect();
-                } catch (e) {
-                    console.error(e);
-                }
+                createUser(firstname, lastname, mail, password, dispatch, navigate, "/login");
             } else {
                 setError("Passwords fields don't have same values");
             }
