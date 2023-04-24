@@ -1,9 +1,11 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import AuthPage from "../components/templates/AuthPage";
 import {findUser} from "../database/queries";
 import {useNavigate} from "react-router-dom";
+import {UserContext} from "../context/UserProvider";
 
 export default function LoginPage() {
+    const [, dispatch] = useContext(UserContext);
     const [mail, setMail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
@@ -12,7 +14,7 @@ export default function LoginPage() {
     const testUser = async () => {
         if (mail.length > 0 && password.length > 0) {
             try {
-                await findUser(mail, password, navigate, "/dashboard");
+                await findUser(mail, password, dispatch, navigate, "/profile");
             } catch (e) {
                 if (e instanceof Error) {
                     setError(e.message);
