@@ -7,6 +7,24 @@
 .page-content {
     width: 100%;
 }
+.page-error {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+.page-error-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.page-error-code {
+    font-size: 5em;
+    color: var(--blue);
+}
+.page-error-description {
+    font-size: 2em;
+}
 
 /* CARD */
 .card {
@@ -73,9 +91,6 @@
 .menu-item {
     padding: 0 40px;
 }
-/*.menu-item:active {
-    background-color: var(--blue);
-}*/
 .menu-item-text:hover {
     opacity: 0.8;
 }
@@ -129,7 +144,7 @@
 }
 .form-error {
     color: red;
-    font-weight: semibold;
+    font-weight: 500;
     width: 30ch;
 }
 .form-validate {

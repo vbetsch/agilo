@@ -1,7 +1,10 @@
+import {ErrorPage} from "../components/templates/ErrorPage";
+
 export default function ErrorNotFoundPage() {
     return (
-        <div className="page">
-            <p>404 Page Not found</p>
-        </div>
+        <ErrorPage>
+            <p className="page-error-code">404</p>
+            <p className="page-error-description">Page Not found</p>
+        </ErrorPage>
     )
 }
