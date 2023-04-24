@@ -7,7 +7,6 @@ import {
     limit,
     query,
     where,
-    doc,
 } from "firebase/firestore";
 import {db} from "./firebase";
 import {User} from "../types/UserType";
@@ -98,20 +97,15 @@ export const findUser = async (
     }
 };
 
-export const logout = async (userId: string | undefined, dispatch: React.Dispatch<Action<UserActionType>>, navigate: NavigateFunction, redirectPath: string) => {
-    if (userId) {
-        try {
-            const _doc = doc(db, 'users', userId);
-            const user = await getDoc(_doc);
+export const logout = async (dispatch: React.Dispatch<Action<UserActionType>>, navigate: NavigateFunction, redirectPath: string) => {
+    try {
+        dispatch({
+            type: UserActionType.SET_CURRENT_USER,
+            payload: undefined,
+        });
 
-            dispatch({
-                type: UserActionType.SET_CURRENT_USER,
-                payload: undefined,
-            });
-
-            navigate(redirectPath);
-        } catch (e) {
-            throw e;
-        }
+        navigate(redirectPath);
+    } catch (e) {
+        throw e;
     }
 }

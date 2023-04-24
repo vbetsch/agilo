@@ -23,7 +23,7 @@ export default function ProfilePage() {
                         type="submit"
                         onClick={(e) => {
                             e.preventDefault();
-                            logout(state.currentUser?.id, dispatch, navigate, "/login")
+                            logout(dispatch, navigate, "/login")
                                 .then(r => {
                                     console.log("Success")
                                 })
