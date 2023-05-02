@@ -76,10 +76,9 @@ export const findUser = async (
             throw new Error("Requested credentials do not match any account");
         }
 
-        await users.forEach((doc) => {
+        users.forEach((doc) => {
             const user = doc;
             const data = user.data();
-            console.log(data);
             if (data) {
                 dispatch({
                     type: UserActionType.SET_CURRENT_USER,
