@@ -7,6 +7,7 @@ export interface FormFieldProperties {
     value: string;
     onChange: React.Dispatch<SetStateAction<string>>;
     required?: boolean;
+    editable?: boolean;
 }
 
 export function FormField({
@@ -16,6 +17,7 @@ export function FormField({
     value,
     onChange,
     required,
+    editable,
 }: FormFieldProperties) {
     const labelId = label.replace(/\s/g, "");
 
@@ -25,27 +27,48 @@ export function FormField({
                 {label}
                 {required && "*"}
             </label>
-            {required ?? (
-                <input
-                    required
-                    className="form-input"
-                    type={type}
-                    id={labelId}
-                    name={labelId}
-                    placeholder={placeholder}
-                    value={value}
-                    onChange={(event) => onChange(event.target.value)}
-                />
-            )}
-            <input
-                className="form-input"
-                type={type}
-                id={labelId}
-                name={labelId}
-                placeholder={placeholder}
-                value={value}
-                onChange={(event) => onChange(event.target.value)}
-            />
+
+            <div className="form-input">
+                {required ? (
+                    <input
+                        required
+                        className="form-input-text"
+                        type={type}
+                        id={labelId}
+                        name={labelId}
+                        placeholder={placeholder}
+                        value={value}
+                        onChange={(event) => onChange(event.target.value)}
+                    />
+                ) : (
+                    <input
+                        className="form-input-text"
+                        type={type}
+                        id={labelId}
+                        name={labelId}
+                        placeholder={placeholder}
+                        value={value}
+                        onChange={(event) => onChange(event.target.value)}
+                    />
+                )}
+
+                {editable && (
+                    <img
+                        className="form-input-img-edit"
+                        src="/svg/edit.svg"
+                        alt="edit"
+                    />
+                )}
+
+                {editable && (
+                    <img
+                        className="form-input-img-save"
+                        src="/svg/save.svg"
+                        alt="save"
+                        onClick={() => console.log("Boo")}
+                    />
+                )}
+            </div>
         </div>
     );
 }

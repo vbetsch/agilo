@@ -142,15 +142,31 @@
     gap: 5px;
 }
 .form-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--light-grey);
+    padding: 10px 15px;
+    border-radius: 30px;
+}
+.form-input-text {
     background-color: var(--light-grey);
     color: var(--white);
     border: none;
-    padding: 10px 15px;
     outline: none;
-    border-radius: 30px;
 }
-.form-input::placeholder {
+.form-input-text::placeholder {
     color: rgba(255, 255, 255, 0.5);
+}
+.form-input-img-edit, .form-input-img-save {
+    display: block;
+}
+.form-input-text:invalid + .form-input-img-edit + .form-input-img-save {
+    display: none;
+}
+.form-input-text:not(:focus-visible) + .form-input-img-edit,
+.form-input-text:valid + .form-input-img-edit {
+    display: none;
 }
 .form-error {
     color: red;
