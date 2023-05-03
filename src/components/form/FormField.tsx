@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import React, { SetStateAction } from "react";
 
 export interface FormFieldProperties {
     type: string;
@@ -25,11 +25,11 @@ export function FormField({
         <div className="form-field">
             <label className="form-label" htmlFor={labelId}>
                 {label}
-                {required && "*"}
+                {!editable && required && "*"}
             </label>
 
             <div className="form-input">
-                {required ? (
+                {editable || required ? (
                     <input
                         required
                         className="form-input-text"

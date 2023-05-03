@@ -21,24 +21,21 @@ export default function ProfilePage() {
             label: "Firstname",
             placeholder: state.currentUser?.firstname ?? "",
             value: firstname,
-            onChange: setFirstname,
-            editable: true,
+            onChange: setFirstname
         },
         {
             type: "text",
             label: "Lastname",
             placeholder: state.currentUser?.lastname ?? "",
             value: lastname,
-            onChange: setLastname,
-            editable: true,
+            onChange: setLastname
         },
         {
             type: "email",
             label: "Mail",
             placeholder: state.currentUser?.mail ?? "",
             value: mail,
-            onChange: setMail,
-            editable: true,
+            onChange: setMail
         },
     ];
 
@@ -66,7 +63,7 @@ export default function ProfilePage() {
                                     placeholder={field.placeholder}
                                     value={field.value}
                                     onChange={field.onChange}
-                                    editable={field.editable}
+                                    editable={true}
                                 />
                             ))}
                         </div>
