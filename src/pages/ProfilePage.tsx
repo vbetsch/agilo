@@ -1,6 +1,6 @@
 import { InternPage } from "../components/templates/InternPage";
 import { CardPage } from "../components/templates/CardPage";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 import {logout, updateUserFirstname, updateUserLastname, updateUserMail} from "../database/queries";
 import { useNavigate } from "react-router-dom";
@@ -78,14 +78,22 @@ export default function ProfilePage() {
                 <div className="profile-infos">
                     <div className="profile-infos-content">
                         <div className="profile-infos-head">
-                            <img
-                                className="profile-infos-picture"
-                                src={
-                                    state.currentUser?.profile_picture ??
-                                    "/img/default_user_picture.png"
-                                }
-                                alt="Profile picture"
-                            />
+                            <div className="profile-head-content">
+                                <img
+                                    className="profile-head-picture"
+                                    src={
+                                        state.currentUser?.profile_picture ??
+                                        "/img/default_user_picture.png"
+                                    }
+                                    alt="Profile picture"
+                                />
+                                <img
+                                    className="profile-head-edit"
+                                    src="/svg/edit.svg"
+                                    alt="edit"
+                                    onClick={() => console.log("todo")}
+                                />
+                            </div>
                         </div>
                         <div className="profile-infos-fields">
                             {fields.map((field, index) => (

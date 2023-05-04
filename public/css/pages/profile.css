@@ -16,10 +16,33 @@
     place-items: center;
 }
 
-.profile-infos-picture {
+.profile-head-content {
+    display: grid;
+    place-items: center;
+}
+
+.profile-head-edit {
+    display: none;
+    z-index: 1;
+    position: absolute;
+    height: 30px;
+}
+
+.profile-head-picture {
+    z-index: 0;
     height: 125px;
     border-radius: 50%;
 }
+
+.profile-head-picture:hover ~ .profile-head-edit {
+    display: block;
+}
+
+.profile-head-picture:hover,
+.profile-head-edit:hover + .profile-head-picture {
+    opacity: 0.5;
+}
+
 
 .profile-infos-fields {
     display: flex;
