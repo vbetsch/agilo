@@ -1,7 +1,9 @@
 import {
     CollectionReference,
+    doc,
     addDoc,
     collection,
+    updateDoc,
     getDoc,
     getDocs,
     limit,
@@ -25,7 +27,7 @@ export const createUser = async (
     redirectPath: string
 ) => {
     try {
-        const docRef = await addDoc<User>(
+        await addDoc<User>(
             collection(db, "users") as CollectionReference<User>,
             {
                 firstname,
@@ -34,19 +36,6 @@ export const createUser = async (
                 authenticationString: password,
             }
         );
-
-        const doc = await getDoc(docRef);
-        const data = doc.data();
-
-        if (data) {
-            dispatch({
-                type: UserActionType.ADD_USERS,
-                payload: {
-                    id: doc.id,
-                    ...data,
-                },
-            });
-        }
 
         navigate(redirectPath);
     } catch (e) {
@@ -63,14 +52,14 @@ export const findUser = async (
 ) => {
 
     try {
-        const docRef = await query(
+        const find = await query(
             collection(db, "users"),
             where("mail", "==", mail),
             where("authenticationString", "==", password),
             limit(1)
         );
 
-        const users = await getDocs(docRef);
+        const users = await getDocs(find);
 
         if (users.size !== 1) {
             throw new Error("Requested credentials do not match any account");
@@ -95,6 +84,111 @@ export const findUser = async (
         throw e;
     }
 };
+
+export const updateUserFirstname = async (
+    value: string,
+    dispatch: React.Dispatch<Action<UserActionType>>,
+    userId?: string,
+) => {
+    try {
+        if (!userId) {
+            throw new Error("User not found")
+        }
+
+        const docRef = doc(db, 'users', userId);
+
+
+        await updateDoc(docRef, {
+            firstname: value
+        });
+
+        const user = await getDoc(docRef);
+        const data = user.data();
+
+        if (data) {
+            dispatch({
+                type: UserActionType.SET_CURRENT_USER,
+                payload: {
+                    id: user.id,
+                    ...data,
+                },
+            });
+        }
+
+    } catch (e) {
+        throw e;
+    }
+}
+
+export const updateUserLastname = async (
+    value: string,
+    dispatch: React.Dispatch<Action<UserActionType>>,
+    userId?: string,
+) => {
+    try {
+        if (!userId) {
+            throw new Error("User not found")
+        }
+
+        const docRef = doc(db, 'users', userId);
+
+
+        await updateDoc(docRef, {
+            lastname: value
+        });
+
+        const user = await getDoc(docRef);
+        const data = user.data();
+
+        if (data) {
+            dispatch({
+                type: UserActionType.SET_CURRENT_USER,
+                payload: {
+                    id: user.id,
+                    ...data,
+                },
+            });
+        }
+
+    } catch (e) {
+        throw e;
+    }
+}
+
+export const updateUserMail = async (
+    value: string,
+    dispatch: React.Dispatch<Action<UserActionType>>,
+    userId?: string,
+) => {
+    try {
+        if (!userId) {
+            throw new Error("User not found")
+        }
+
+        const docRef = doc(db, 'users', userId);
+
+
+        await updateDoc(docRef, {
+            mail: value
+        });
+
+        const user = await getDoc(docRef);
+        const data = user.data();
+
+        if (data) {
+            dispatch({
+                type: UserActionType.SET_CURRENT_USER,
+                payload: {
+                    id: user.id,
+                    ...data,
+                },
+            });
+        }
+
+    } catch (e) {
+        throw e;
+    }
+}
 
 export const logout = async (dispatch: React.Dispatch<Action<UserActionType>>, navigate: NavigateFunction, redirectPath: string) => {
     try {

@@ -2,7 +2,7 @@ import { InternPage } from "../components/templates/InternPage";
 import { CardPage } from "../components/templates/CardPage";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
-import { logout } from "../database/queries";
+import {logout, updateUserFirstname, updateUserLastname, updateUserMail} from "../database/queries";
 import { useNavigate } from "react-router-dom";
 import { SubmitButton } from "../components/buttons/SubmitButton";
 import { AlternateButton } from "../components/buttons/AlternateButton";
@@ -15,27 +15,60 @@ export default function ProfilePage() {
     const [mail, setMail] = useState<string>("");
     const navigate = useNavigate();
 
+    const setFirstnameValue = async (): Promise<void> => {
+        if (firstname.length > 0){
+            try {
+                await updateUserFirstname(firstname, dispatch, state.currentUser?.id)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    }
+
+    const setLastnameValue = async (): Promise<void> => {
+        if (lastname.length > 0){
+            try {
+                await updateUserLastname(lastname, dispatch, state.currentUser?.id)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    }
+
+    const setMailValue = async (): Promise<void> => {
+        if (mail.length > 0){
+            try {
+                await updateUserMail(mail, dispatch, state.currentUser?.id)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    }
+
     const fields = [
         {
             type: "text",
             label: "Firstname",
             placeholder: state.currentUser?.firstname ?? "",
             value: firstname,
-            onChange: setFirstname
+            onChange: setFirstname,
+            editableAction: setFirstnameValue
         },
         {
             type: "text",
             label: "Lastname",
             placeholder: state.currentUser?.lastname ?? "",
             value: lastname,
-            onChange: setLastname
+            onChange: setLastname,
+            editableAction: setLastnameValue
         },
         {
             type: "email",
             label: "Mail",
             placeholder: state.currentUser?.mail ?? "",
             value: mail,
-            onChange: setMail
+            onChange: setMail,
+            editableAction: setMailValue
         },
     ];
 
@@ -63,6 +96,7 @@ export default function ProfilePage() {
                                     placeholder={field.placeholder}
                                     value={field.value}
                                     onChange={field.onChange}
+                                    editableAction={field.editableAction}
                                     editable={true}
                                 />
                             ))}

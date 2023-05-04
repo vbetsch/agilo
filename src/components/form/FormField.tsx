@@ -8,6 +8,7 @@ export interface FormFieldProperties {
     onChange: React.Dispatch<SetStateAction<string>>;
     required?: boolean;
     editable?: boolean;
+    editableAction?: () => Promise<void>;
 }
 
 export function FormField({
@@ -18,6 +19,7 @@ export function FormField({
     onChange,
     required,
     editable,
+    editableAction
 }: FormFieldProperties) {
     const labelId = label.replace(/\s/g, "");
 
@@ -65,7 +67,12 @@ export function FormField({
                         className="form-input-img-save"
                         src="/svg/save.svg"
                         alt="save"
-                        onClick={() => console.log("Boo")}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            if (editableAction) {
+                                editableAction();
+                            }
+                        }}
                     />
                 )}
             </div>
