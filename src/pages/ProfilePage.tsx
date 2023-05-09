@@ -17,10 +17,11 @@ export default function ProfilePage() {
     const [mail, setMail] = useState<string>("");
     const navigate = useNavigate();
 
-    const [openFileSelector, {filesContent}] = useFilePicker({
+    const [openFileSelector, {filesContent, errors}] = useFilePicker({
         readAs: 'DataURL',
         accept: ['image/png', 'image/jpg', 'image/jpeg', 'image/svg'],
         limitFilesConfig: {max: 1},
+        maxFileSize: 0.9,
     });
 
     const setValue = async (field: UserField, inputValue: string, setter?: Dispatch<SetStateAction<string>>): Promise<void> => {
@@ -96,6 +97,9 @@ export default function ProfilePage() {
                                     />
                                 )}
                             </div>
+                            {errors.length > 0 && (<p className="form-error">An error has occurred{
+                                errors[0].fileSizeToolarge && ": picture picked is too large"
+                            }</p>)}
                         </div>
                         <div className="profile-infos-fields">
                             {fields.map((field, index) => (
