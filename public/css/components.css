@@ -114,12 +114,9 @@
     text-decoration: none;
     color: var(--white);
 }
-.menu-item-svg {
-    height: 20px;
-}
 .menu-item-img {
     height: 25px;
-    border-radius: 15px;
+    width: 25px;
 }
 .menu-item-text {
     font-size: 20px;

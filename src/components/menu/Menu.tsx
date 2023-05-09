@@ -12,7 +12,7 @@ export function Menu({items}: MenuProperties) {
             </div>
             <div className="menu-items">
                 {items.map((item, index) => (
-                    <MenuItem key={index} img={item.img} text={item.text} href={item.href}/>
+                    <MenuItem key={index} img={item.img} text={item.text} href={item.href} rounded={item.rounded}/>
                 ))}
             </div>
         </aside>

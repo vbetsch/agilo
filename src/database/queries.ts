@@ -16,6 +16,7 @@ import {UserActionType} from "../context/UserReducer";
 import {Action} from "../types/ActionType";
 import {NavigateFunction} from "react-router-dom";
 import React from "react";
+import {UserField} from "../enums/UserField";
 
 export const createUser = async (
     firstname: string,
@@ -86,7 +87,7 @@ export const findUser = async (
 };
 
 export const updateUserField = async (
-    field: "firstname" | "lastname" | "mail",
+    field: UserField,
     value: string,
     dispatch: React.Dispatch<Action<UserActionType>>,
     userId?: string,

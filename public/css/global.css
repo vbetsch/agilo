@@ -1,3 +1,7 @@
 .background-blue {
     background-color: var(--blue);
 }
+
+.rounded {
+    border-radius: 15px;
+}

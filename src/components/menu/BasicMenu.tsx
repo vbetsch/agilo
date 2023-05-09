@@ -10,7 +10,8 @@ export function BasicMenu() {
             {
                 img: state.currentUser?.profile_picture ?? "/img/default_user_picture.png",
                 text: "Profile",
-                href: "/profile"
+                href: "/profile",
+                rounded: true
             },
             {
                 img: "/svg/home.svg",

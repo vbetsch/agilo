@@ -7,22 +7,30 @@ import {useNavigate} from "react-router-dom";
 import {SubmitButton} from "../components/buttons/SubmitButton";
 import {AlternateButton} from "../components/buttons/AlternateButton";
 import {FormField} from "../components/form/FormField";
+import {useFilePicker} from "use-file-picker";
+import {UserField} from "../enums/UserField";
 
 export default function ProfilePage() {
-    const [state, dispatch] = useContext(UserContext);
+    const [user, setUser] = useContext(UserContext);
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState<string>("");
     const [mail, setMail] = useState<string>("");
     const navigate = useNavigate();
 
-    const setValue = async (field: "firstname" | "lastname" | "mail", inputValue: string, setter: Dispatch<SetStateAction<string>>): Promise<void> => {
+    const [openFileSelector, {filesContent}] = useFilePicker({
+        readAs: 'DataURL',
+        accept: ['image/png', 'image/jpg', 'image/jpeg', 'image/svg'],
+        limitFilesConfig: {max: 1},
+    });
+
+    const setValue = async (field: UserField, inputValue: string, setter?: Dispatch<SetStateAction<string>>): Promise<void> => {
         if (inputValue.length > 0) {
             try {
-                await updateUserField(field, inputValue, dispatch, state.currentUser?.id)
+                await updateUserField(field, inputValue, setUser, user.currentUser?.id)
             } catch (e) {
                 console.error(e)
             } finally {
-                setter("");
+                setter && setter("");
             }
         }
     }
@@ -31,26 +39,26 @@ export default function ProfilePage() {
         {
             type: "text",
             label: "Firstname",
-            placeholder: state.currentUser?.firstname ?? "",
+            placeholder: user.currentUser?.firstname ?? "",
             value: firstname,
             onChange: setFirstname,
-            editableAction: () => setValue("firstname", firstname, setFirstname)
+            editableAction: () => setValue(UserField.FIRSTNAME, firstname, setFirstname)
         },
         {
             type: "text",
             label: "Lastname",
-            placeholder: state.currentUser?.lastname ?? "",
+            placeholder: user.currentUser?.lastname ?? "",
             value: lastname,
             onChange: setLastname,
-            editableAction: () => setValue("lastname", lastname, setLastname)
+            editableAction: () => setValue(UserField.LASTNAME, lastname, setLastname)
         },
         {
             type: "email",
             label: "Mail",
-            placeholder: state.currentUser?.mail ?? "",
+            placeholder: user.currentUser?.mail ?? "",
             value: mail,
             onChange: setMail,
-            editableAction: () => setValue("mail", mail, setMail)
+            editableAction: () => setValue(UserField.EMAIL, mail, setMail)
         },
     ];
 
@@ -63,18 +71,30 @@ export default function ProfilePage() {
                             <div className="profile-head-content">
                                 <img
                                     className="profile-head-picture"
-                                    src={
-                                        state.currentUser?.profile_picture ??
-                                        "/img/default_user_picture.png"
-                                    }
+                                    src={filesContent[0]?.content ?? user.currentUser?.profile_picture ?? "/img/default_user_picture.png"}
                                     alt="Profile picture"
+                                    onClick={() => {
+                                        try {
+                                            openFileSelector();
+                                        } catch (err) {
+                                            console.log(err);
+                                        }
+                                    }}
                                 />
-                                <img
-                                    className="profile-head-edit"
-                                    src="/svg/edit.svg"
-                                    alt="edit"
-                                    onClick={() => console.log("todo")}
-                                />
+                                {!filesContent[0] || user.currentUser?.profile_picture === filesContent[0].content ? (
+                                    <img
+                                        className="profile-head-icon"
+                                        src="/svg/edit.svg"
+                                        alt="edit"
+                                    />
+                                ) : (
+                                    <img
+                                        className="profile-head-icon"
+                                        src="/svg/save.svg"
+                                        alt="save"
+                                        onClick={() => setValue(UserField.PICTURE, filesContent[0].content)}
+                                    />
+                                )}
                             </div>
                         </div>
                         <div className="profile-infos-fields">
@@ -96,7 +116,7 @@ export default function ProfilePage() {
                         <AlternateButton label={"Change password"}/>
                         <SubmitButton
                             label={"Logout"}
-                            action={() => logout(dispatch, navigate, "/login")}
+                            action={() => logout(setUser, navigate, "/login")}
                         />
                     </div>
                 </div>

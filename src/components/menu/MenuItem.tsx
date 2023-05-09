@@ -4,12 +4,12 @@ export interface MenuItemProperties {
     img: string
     text: string
     href?: string
+    rounded?: boolean
 }
 
-export function MenuItem({img, text, href}: MenuItemProperties) {
+export function MenuItem({img, text, href, rounded}: MenuItemProperties) {
     let defaultItemContent = "menu-item";
-    let defaultImgClassName = "menu-item-"
-    const fileExtension = img.split('/').reverse()[0].split('.').pop()
+    let defaultImgClassName = defaultItemContent + "-img"
 
     const location = useLocation();
     const currentRoute = location.pathname;
@@ -18,10 +18,8 @@ export function MenuItem({img, text, href}: MenuItemProperties) {
         defaultItemContent += " background-blue"
     }
 
-    if (fileExtension === "jpg" || fileExtension === "png") {
-        defaultImgClassName += "img"
-    } else if (fileExtension === "svg") {
-        defaultImgClassName += fileExtension
+    if (rounded) {
+        defaultImgClassName += " rounded"
     }
 
     return (

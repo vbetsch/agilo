@@ -21,7 +21,7 @@
     place-items: center;
 }
 
-.profile-head-edit {
+.profile-head-icon {
     display: none;
     z-index: 1;
     position: absolute;
@@ -31,15 +31,16 @@
 .profile-head-picture {
     z-index: 0;
     height: 125px;
+    width: 125px;
     border-radius: 50%;
 }
 
-.profile-head-picture:hover ~ .profile-head-edit {
+.profile-head-picture:hover ~ .profile-head-icon {
     display: block;
 }
 
 .profile-head-picture:hover,
-.profile-head-edit:hover + .profile-head-picture {
+.profile-head-icon:hover + .profile-head-picture {
     opacity: 0.5;
 }
 
