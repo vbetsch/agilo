@@ -1,4 +1,4 @@
-interface SubmitButtonProperties {
+export interface SubmitButtonProperties {
     label: string;
     action: () => Promise<void>;
 }

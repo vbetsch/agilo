@@ -53,7 +53,7 @@ export default function ProfileEditPage() {
     return (
         <CardPage>
             <BackLink href={"/profile"}/>
-            <Form submitLabel={"Update"} submitAction={changePassword} error={error} fields={fields}/>
+            <Form submitButton={{label: "Update", action: changePassword}} error={error} fields={fields}/>
         </CardPage>
     )
 }

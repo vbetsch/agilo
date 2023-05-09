@@ -1,69 +1,30 @@
 import {FormField, FormFieldProperties} from "./FormField";
-import {SubmitButton} from "../buttons/SubmitButton";
-import {AlternateButton} from "../buttons/AlternateButton";
+import {SubmitButton, SubmitButtonProperties} from "../buttons/SubmitButton";
+import {AlternateButton, AlternateButtonProperties} from "../buttons/AlternateButton";
 import React from "react";
-import {FileContent} from "use-file-picker";
+import {ImagePicker, ImagePickerProperties} from "./ImagePicker";
 
 interface FormProperties {
     fields: Array<FormFieldProperties>
     error: string | undefined
-    submitLabel: string
-    submitAction: () => Promise<void>
-    altBtnLabel?: string
-    altBtnAction?: () => Promise<void>
-    picture?: boolean
-    oldPicture?: string
-    selectedFile?: FileContent
-    defaultPicture?: string
-    fileSelector?: () => void
-    pictureAction?: () => Promise<void>
+    submitButton: SubmitButtonProperties
+    alternateButton?: AlternateButtonProperties
+    imagePicker?: ImagePickerProperties
 }
 
 export function Form({
-                         submitLabel,
                          fields,
                          error,
-                         submitAction,
-                         altBtnLabel,
-                         altBtnAction,
-                         picture,
-                         oldPicture,
-                         selectedFile,
-                         defaultPicture,
-                         fileSelector,
-                         pictureAction
+                         submitButton,
+                         alternateButton,
+                         imagePicker
                      }: FormProperties) {
     return (
         <form className="form">
-            {picture && (
-                <div className="form-head-content">
-                    <img
-                        className="form-head-picture"
-                        src={selectedFile?.content ?? oldPicture ?? defaultPicture}
-                        alt="Profile picture"
-                        onClick={() => {
-                            try {
-                                fileSelector && fileSelector();
-                            } catch (err) {
-                                console.log(err);
-                            }
-                        }}
-                    />
-                    {!selectedFile || oldPicture === selectedFile.content ? (
-                        <img
-                            className="form-head-icon"
-                            src="/svg/edit.svg"
-                            alt="edit"
-                        />
-                    ) : (
-                        <img
-                            className="form-head-icon"
-                            src="/svg/save.svg"
-                            alt="save"
-                            onClick={pictureAction}
-                        />
-                    )}
-                </div>
+            {imagePicker && (
+                <ImagePicker defaultPicture={imagePicker.defaultPicture} fileSelector={imagePicker.fileSelector}
+                             oldPicture={imagePicker.oldPicture} selectedPicture={imagePicker.selectedPicture}
+                             submitAction={imagePicker.submitAction}/>
             )}
             <div className="form-fields">
                 {fields.map((field, index) => (
@@ -84,8 +45,8 @@ export function Form({
                 {error && error.length > 0 && <p>{error}</p>}
             </div>
             <div className="form-validate">
-                {altBtnLabel && altBtnAction && (<AlternateButton label={altBtnLabel} action={altBtnAction}/>)}
-                <SubmitButton label={submitLabel} action={submitAction}/>
+                {alternateButton && (<AlternateButton label={alternateButton.label} action={alternateButton.action}/>)}
+                <SubmitButton label={submitButton.label} action={submitButton.action}/>
             </div>
         </form>
     );

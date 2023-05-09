@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import {useContext, useState} from "react";
 import AuthPage from "../components/templates/AuthPage";
-import { createUser } from "../database/queries"
-import { UserContext } from "../context/UserProvider";
-import { useNavigate } from "react-router-dom";
+import {createUser} from "../database/queries"
+import {UserContext} from "../context/UserProvider";
+import {useNavigate} from "react-router-dom";
 
 export default function RegisterPage() {
     const [, setUser] = useContext(UserContext);
@@ -34,7 +34,7 @@ export default function RegisterPage() {
     };
 
     return (
-        <AuthPage formLabel={"Register"} formAction={addUser} formError={error} formFields={[
+        <AuthPage formButton={{label: "Register", action: addUser}} formError={error} formFields={[
             {
                 type: "text",
                 label: "Firstname",

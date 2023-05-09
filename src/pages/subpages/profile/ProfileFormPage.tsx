@@ -68,16 +68,21 @@ export function ProfileFormPage() {
             <Form
                 fields={fields}
                 error={errors.length > 0 && errors[0].fileSizeToolarge ? "Picture picked is too large" : ""}
-                submitLabel={"Logout"}
-                submitAction={() => logout(setUser, navigate, "/login")}
-                altBtnLabel={"Change password"}
-                altBtnAction={async () => await navigate("/profile/edit")}
-                picture={true}
-                defaultPicture={"/img/default_user_picture.png"}
-                oldPicture={user.currentUser?.profile_picture}
-                selectedFile={filesContent[0]}
-                fileSelector={openFileSelector}
-                pictureAction={() => setValue(UserField.PICTURE, filesContent[0].content)}
+                submitButton={{
+                    label: "Logout",
+                    action: () => logout(setUser, navigate, "/login")
+                }}
+                alternateButton={{
+                    label: "Change password",
+                    action: async () => await navigate("/profile/edit")
+                }}
+                imagePicker={{
+                    fileSelector: openFileSelector,
+                    defaultPicture: "/img/default_user_picture.png",
+                    oldPicture: user.currentUser?.profile_picture,
+                    selectedPicture: filesContent[0],
+                    submitAction: () => setValue(UserField.PICTURE, filesContent[0].content)
+                }}
             />
         </CardPage>
     )

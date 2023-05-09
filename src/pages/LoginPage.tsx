@@ -29,9 +29,11 @@ export default function LoginPage() {
 
     return (
         <AuthPage
-            formLabel={"Login"}
-            formAction={testUser}
             formError={error}
+            formButton={{
+                label: "Login",
+                action: testUser
+            }}
             formFields={[
                 {
                     type: "email",

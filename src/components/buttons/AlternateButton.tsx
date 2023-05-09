@@ -1,4 +1,4 @@
-interface AlternateButtonProperties {
+export interface AlternateButtonProperties {
     label: string;
     action: () => Promise<void>;
 }
