@@ -1,0 +1,44 @@
+/*************************   BROWSE   *************************/
+/* BACKLINK */
+.backlink {
+    width: 100%;
+}
+.backlink-content {
+    display: flex;
+    color: var(--blue);
+    text-decoration: none;
+    align-items: center;
+    gap: 2px;
+}
+.backlink-content:hover {
+    text-decoration: underline;
+}
+.backlink-img {
+    width: 20px;
+}
+
+/*************************   BUTTONS   ************************/
+.button {
+    border: none;
+    border-radius: 30px;
+}
+.button-text {
+    border: none;
+    background-color: transparent;
+    color: var(--white);
+    font-size: 17px;
+}
+
+.alt-button {
+    background-color: var(--light-grey);
+    padding: 7px 15px;
+}
+
+/* SUBMIT */
+.submit-button {
+    background: linear-gradient(265.71deg, #1C5BFF 8.3%, #551AFF 95.71%);
+    padding: 7px 30px;
+}
+.submit-button:hover {
+    background: linear-gradient(265.71deg, #551AFF 8.3%, #1C5BFF 95.71%);
+}

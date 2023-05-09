@@ -1,0 +1,53 @@
+/* PAGE */
+.page {
+    display: flex;
+    height: 100vh;
+}
+.page-content {
+    width: 100%;
+}
+
+/* ERROR */
+.page-error {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+.page-error-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.page-error-code {
+    font-size: 5em;
+    color: var(--blue);
+}
+.page-error-description {
+    font-size: 2em;
+}
+
+/* CARD */
+.card {
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    place-items: center;
+    justify-content: center;
+}
+.card-content {
+    background-color: var(--dark-grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 35px;
+    border-radius: 50px;
+    gap: 40px;
+}
+
+/* AUTH */
+.auth-logo {
+    height: 80px;
+    width: auto;
+}
