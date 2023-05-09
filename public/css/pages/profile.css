@@ -42,6 +42,7 @@
 .profile-head-picture:hover,
 .profile-head-icon:hover + .profile-head-picture {
     opacity: 0.5;
+    filter: blur(2px);
 }
 
 
