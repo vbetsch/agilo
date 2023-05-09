@@ -7,6 +7,3 @@
 @import url(components/basics.css);
 @import url(components/specials.css);
 @import url(components/templates.css);
-
-/* PAGES */
-@import url(pages/profile.css);

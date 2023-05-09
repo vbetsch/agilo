@@ -13,7 +13,7 @@ export default function AuthPage({formLabel, formFields, formAction, formError} 
     return (
         <CardPage>
             <img className="auth-logo" src="/img/logo.png" alt="Logo Agilo"/>
-            <Form label={formLabel} fields={formFields} action={formAction} error={formError} />
+            <Form submitLabel={formLabel} fields={formFields} submitAction={formAction} error={formError} />
         </CardPage>
     )
 }

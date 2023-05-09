@@ -4,11 +4,9 @@ import React, {Dispatch, SetStateAction, useContext, useState} from "react";
 import {UserContext} from "../context/UserProvider";
 import {logout, updateUserField} from "../database/queries";
 import {useNavigate} from "react-router-dom";
-import {SubmitButton} from "../components/buttons/SubmitButton";
-import {AlternateButton} from "../components/buttons/AlternateButton";
-import {FormField} from "../components/form/FormField";
 import {useFilePicker} from "use-file-picker";
 import {UserField} from "../enums/UserField";
+import {Form} from "../components/form/Form";
 
 export default function ProfilePage() {
     const [user, setUser] = useContext(UserContext);
@@ -42,6 +40,7 @@ export default function ProfilePage() {
             label: "Firstname",
             placeholder: user.currentUser?.firstname ?? "",
             value: firstname,
+            editable: true,
             onChange: setFirstname,
             editableAction: () => setValue(UserField.FIRSTNAME, firstname, setFirstname)
         },
@@ -50,6 +49,7 @@ export default function ProfilePage() {
             label: "Lastname",
             placeholder: user.currentUser?.lastname ?? "",
             value: lastname,
+            editable: true,
             onChange: setLastname,
             editableAction: () => setValue(UserField.LASTNAME, lastname, setLastname)
         },
@@ -58,6 +58,7 @@ export default function ProfilePage() {
             label: "Mail",
             placeholder: user.currentUser?.mail ?? "",
             value: mail,
+            editable: true,
             onChange: setMail,
             editableAction: () => setValue(UserField.EMAIL, mail, setMail)
         },
@@ -67,62 +68,20 @@ export default function ProfilePage() {
         <InternPage>
             <CardPage>
                 <div className="profile-infos">
-                    <div className="profile-infos-content">
-                        <div className="profile-infos-head">
-                            <div className="profile-head-content">
-                                <img
-                                    className="profile-head-picture"
-                                    src={filesContent[0]?.content ?? user.currentUser?.profile_picture ?? "/img/default_user_picture.png"}
-                                    alt="Profile picture"
-                                    onClick={() => {
-                                        try {
-                                            openFileSelector();
-                                        } catch (err) {
-                                            console.log(err);
-                                        }
-                                    }}
-                                />
-                                {!filesContent[0] || user.currentUser?.profile_picture === filesContent[0].content ? (
-                                    <img
-                                        className="profile-head-icon"
-                                        src="/svg/edit.svg"
-                                        alt="edit"
-                                    />
-                                ) : (
-                                    <img
-                                        className="profile-head-icon"
-                                        src="/svg/save.svg"
-                                        alt="save"
-                                        onClick={() => setValue(UserField.PICTURE, filesContent[0].content)}
-                                    />
-                                )}
-                            </div>
-                            {errors.length > 0 && (<p className="form-error">An error has occurred{
-                                errors[0].fileSizeToolarge && ": picture picked is too large"
-                            }</p>)}
-                        </div>
-                        <div className="profile-infos-fields">
-                            {fields.map((field, index) => (
-                                <FormField
-                                    key={index}
-                                    type={field.type}
-                                    label={field.label}
-                                    placeholder={field.placeholder}
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                    editableAction={field.editableAction}
-                                    editable={true}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <div className="profile-buttons">
-                        <AlternateButton label={"Change password"} action={async () => await navigate("/profile/edit")}/>
-                        <SubmitButton
-                            label={"Logout"}
-                            action={() => logout(setUser, navigate, "/login")}
-                        />
-                    </div>
+                    <Form
+                        fields={fields}
+                        error={errors.length > 0 && errors[0].fileSizeToolarge ? "Picture picked is too large" : ""}
+                        submitLabel={"Logout"}
+                        submitAction={() => logout(setUser, navigate, "/login")}
+                        altBtnLabel={"Change password"}
+                        altBtnAction={async () => await navigate("/profile/edit")}
+                        picture={true}
+                        defaultPicture={"/img/default_user_picture.png"}
+                        oldPicture={user.currentUser?.profile_picture}
+                        selectedFile={filesContent[0]}
+                        fileSelector={openFileSelector}
+                        pictureAction={() => setValue(UserField.PICTURE, filesContent[0].content)}
+                    />
                 </div>
             </CardPage>
         </InternPage>

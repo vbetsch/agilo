@@ -69,9 +69,7 @@ export function FormField({
                         alt="save"
                         onClick={(e) => {
                             e.preventDefault();
-                            if (editableAction) {
-                                editableAction();
-                            }
+                            editableAction && editableAction();
                         }}
                     />
                 )}

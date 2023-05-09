@@ -2,28 +2,35 @@ import {InternPage} from "../components/templates/InternPage";
 import {CardPage} from "../components/templates/CardPage";
 import {BackLink} from "../components/browse/BackLink";
 import React, {useContext, useState} from "react";
-import {FormField} from "../components/form/FormField";
-import {SubmitButton} from "../components/buttons/SubmitButton";
 import {updateUserField} from "../database/queries";
 import {UserField} from "../enums/UserField";
 import {UserContext} from "../context/UserProvider";
+import {Form} from "../components/form/Form";
+import {useNavigate} from "react-router-dom";
 
 export default function EditPage() {
     const [user, setUser] = useContext(UserContext);
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const navigate = useNavigate();
 
     const fields = [
         {
+            type: "password",
             label: "Password",
+            placeholder: "****************",
             value: password,
-            onChange: setPassword
+            onChange: setPassword,
+            required: true
         },
         {
+            type: "password",
             label: "Confirm Password",
+            placeholder: "****************",
             value: confirmPassword,
-            onChange: setConfirmPassword
+            onChange: setConfirmPassword,
+            required: true
         }
     ]
 
@@ -32,6 +39,7 @@ export default function EditPage() {
             setError("");
             try {
                 await updateUserField(UserField.PASSWORD, password, setUser, user.currentUser?.id);
+                navigate("/profile");
             } catch (e) {
                 console.error(e)
             } finally {
@@ -47,27 +55,7 @@ export default function EditPage() {
         <InternPage>
             <CardPage>
                 <BackLink href={"/profile"}/>
-                <form className="form">
-                    <div className="form-fields">
-                        {fields.map((field, index) => (
-                            <FormField
-                                key={index}
-                                type={"password"}
-                                label={field.label}
-                                placeholder={"****************"}
-                                value={field.value}
-                                onChange={field.onChange}
-                                required={true}
-                            />
-                        ))}
-                    </div>
-                    <div className="form-error">
-                        {error && error.length > 0 && <p>{error}</p>}
-                    </div>
-                    <div className="form-validate">
-                        <SubmitButton label={"Update"} action={changePassword}/>
-                    </div>
-                </form>
+                <Form submitLabel={"Update"} submitAction={changePassword} error={error} fields={fields}/>
             </CardPage>
         </InternPage>
     )

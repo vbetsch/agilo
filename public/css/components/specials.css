@@ -47,6 +47,36 @@
     flex-direction: column;
     gap: 15px;
 }
+
+.form-head-content {
+    display: grid;
+    place-items: center;
+}
+
+.form-head-icon {
+    display: none;
+    z-index: 1;
+    position: absolute;
+    height: 30px;
+}
+
+.form-head-picture {
+    z-index: 0;
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+}
+
+.form-head-picture:hover ~ .form-head-icon {
+    display: block;
+}
+
+.form-head-picture:hover,
+.form-head-icon:hover + .form-head-picture {
+    opacity: 0.5;
+    filter: blur(2px);
+}
+
 .form-fields {
     display: flex;
     flex-direction: column;
@@ -92,6 +122,7 @@
     width: 30ch;
 }
 .form-validate {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
 }
