@@ -1,11 +1,11 @@
-import {logout, updateUserField} from "../../database/queries";
-import {UserField} from "../../enums/UserField";
 import React, {Dispatch, SetStateAction, useContext, useState} from "react";
-import {UserContext} from "../../context/UserProvider";
 import {useNavigate} from "react-router-dom";
 import {useFilePicker} from "use-file-picker";
-import {CardPage} from "../../components/templates/CardPage";
-import {Form} from "../../components/form/Form";
+import {UserContext} from "../../../context/UserProvider";
+import {UserField} from "../../../enums/UserField";
+import {logout, updateUserField} from "../../../database/queries";
+import {Form} from "../../../components/form/Form";
+import {CardPage} from "../../../components/templates/CardPage";
 
 export function ProfileFormPage() {
     const [user, setUser] = useContext(UserContext);

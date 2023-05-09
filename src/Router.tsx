@@ -4,8 +4,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
-import {ProfileFormPage} from "./pages/subpages/ProfileFormPage";
-import EditPage from "./pages/subpages/EditPage";
+import {ProfileFormPage} from "./pages/subpages/profile/ProfileFormPage";
+import ProfileEditPage from "./pages/subpages/profile/ProfileEditPage";
 
 export const Router = createBrowserRouter([
     {
@@ -34,7 +34,7 @@ export const Router = createBrowserRouter([
             },
             {
                 path: "edit",
-                element: <EditPage />
+                element: <ProfileEditPage />
             },
         ]
     },
