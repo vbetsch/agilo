@@ -1,12 +1,12 @@
-import { InternPage } from "../components/templates/InternPage";
-import { CardPage } from "../components/templates/CardPage";
-import React, { useContext, useState } from "react";
-import { UserContext } from "../context/UserProvider";
-import {logout, updateUserFirstname, updateUserLastname, updateUserMail} from "../database/queries";
-import { useNavigate } from "react-router-dom";
-import { SubmitButton } from "../components/buttons/SubmitButton";
-import { AlternateButton } from "../components/buttons/AlternateButton";
-import { FormField } from "../components/form/FormField";
+import {InternPage} from "../components/templates/InternPage";
+import {CardPage} from "../components/templates/CardPage";
+import React, {Dispatch, SetStateAction, useContext, useState} from "react";
+import {UserContext} from "../context/UserProvider";
+import {logout, updateUserField} from "../database/queries";
+import {useNavigate} from "react-router-dom";
+import {SubmitButton} from "../components/buttons/SubmitButton";
+import {AlternateButton} from "../components/buttons/AlternateButton";
+import {FormField} from "../components/form/FormField";
 
 export default function ProfilePage() {
     const [state, dispatch] = useContext(UserContext);
@@ -15,32 +15,14 @@ export default function ProfilePage() {
     const [mail, setMail] = useState<string>("");
     const navigate = useNavigate();
 
-    const setFirstnameValue = async (): Promise<void> => {
-        if (firstname.length > 0){
+    const setValue = async (field: "firstname" | "lastname" | "mail", inputValue: string, setter: Dispatch<SetStateAction<string>>): Promise<void> => {
+        if (inputValue.length > 0) {
             try {
-                await updateUserFirstname(firstname, dispatch, state.currentUser?.id)
+                await updateUserField(field, inputValue, dispatch, state.currentUser?.id)
             } catch (e) {
                 console.error(e)
-            }
-        }
-    }
-
-    const setLastnameValue = async (): Promise<void> => {
-        if (lastname.length > 0){
-            try {
-                await updateUserLastname(lastname, dispatch, state.currentUser?.id)
-            } catch (e) {
-                console.error(e)
-            }
-        }
-    }
-
-    const setMailValue = async (): Promise<void> => {
-        if (mail.length > 0){
-            try {
-                await updateUserMail(mail, dispatch, state.currentUser?.id)
-            } catch (e) {
-                console.error(e)
+            } finally {
+                setter("");
             }
         }
     }
@@ -52,7 +34,7 @@ export default function ProfilePage() {
             placeholder: state.currentUser?.firstname ?? "",
             value: firstname,
             onChange: setFirstname,
-            editableAction: setFirstnameValue
+            editableAction: () => setValue("firstname", firstname, setFirstname)
         },
         {
             type: "text",
@@ -60,7 +42,7 @@ export default function ProfilePage() {
             placeholder: state.currentUser?.lastname ?? "",
             value: lastname,
             onChange: setLastname,
-            editableAction: setLastnameValue
+            editableAction: () => setValue("lastname", lastname, setLastname)
         },
         {
             type: "email",
@@ -68,7 +50,7 @@ export default function ProfilePage() {
             placeholder: state.currentUser?.mail ?? "",
             value: mail,
             onChange: setMail,
-            editableAction: setMailValue
+            editableAction: () => setValue("mail", mail, setMail)
         },
     ];
 
@@ -111,7 +93,7 @@ export default function ProfilePage() {
                         </div>
                     </div>
                     <div className="profile-buttons">
-                        <AlternateButton label={"Change password"} />
+                        <AlternateButton label={"Change password"}/>
                         <SubmitButton
                             label={"Logout"}
                             action={() => logout(dispatch, navigate, "/login")}

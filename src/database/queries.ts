@@ -85,7 +85,8 @@ export const findUser = async (
     }
 };
 
-export const updateUserFirstname = async (
+export const updateUserField = async (
+    field: "firstname" | "lastname" | "mail",
     value: string,
     dispatch: React.Dispatch<Action<UserActionType>>,
     userId?: string,
@@ -97,79 +98,8 @@ export const updateUserFirstname = async (
 
         const docRef = doc(db, 'users', userId);
 
-
         await updateDoc(docRef, {
-            firstname: value
-        });
-
-        const user = await getDoc(docRef);
-        const data = user.data();
-
-        if (data) {
-            dispatch({
-                type: UserActionType.SET_CURRENT_USER,
-                payload: {
-                    id: user.id,
-                    ...data,
-                },
-            });
-        }
-
-    } catch (e) {
-        throw e;
-    }
-}
-
-export const updateUserLastname = async (
-    value: string,
-    dispatch: React.Dispatch<Action<UserActionType>>,
-    userId?: string,
-) => {
-    try {
-        if (!userId) {
-            throw new Error("User not found")
-        }
-
-        const docRef = doc(db, 'users', userId);
-
-
-        await updateDoc(docRef, {
-            lastname: value
-        });
-
-        const user = await getDoc(docRef);
-        const data = user.data();
-
-        if (data) {
-            dispatch({
-                type: UserActionType.SET_CURRENT_USER,
-                payload: {
-                    id: user.id,
-                    ...data,
-                },
-            });
-        }
-
-    } catch (e) {
-        throw e;
-    }
-}
-
-export const updateUserMail = async (
-    value: string,
-    dispatch: React.Dispatch<Action<UserActionType>>,
-    userId?: string,
-) => {
-    try {
-        if (!userId) {
-            throw new Error("User not found")
-        }
-
-        const docRef = doc(db, 'users', userId);
-
-
-        await updateDoc(docRef, {
-            mail: value
+            [field]: value
         });
 
         const user = await getDoc(docRef);
