@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
-    const [, dispatch] = useContext(UserContext);
+    const [, setUser] = useContext(UserContext);
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState<string>("");
     const [mail, setMail] = useState<string>("");
@@ -24,7 +24,7 @@ export default function RegisterPage() {
         ) {
             if (password === confirmPassword) {
                 setError("");
-                await createUser(firstname, lastname, mail, password, dispatch, navigate, "/login");
+                await createUser(firstname, lastname, mail, password, setUser, navigate, "/login");
             } else {
                 setError("Passwords fields don't have same values");
             }

@@ -5,9 +5,9 @@ import { UserContext } from "../../context/UserProvider";
 
 export const InternPage: React.FC<PropsWithChildren> = ({ children }) => {
     // const navigate = useNavigate();
-    const [state] = useContext(UserContext);
+    const [user] = useContext(UserContext);
     useEffect(() => {
-        if (!state.currentUser) {
+        if (!user.currentUser) {
             // navigate("/login");
             console.log("navigate to /login");
         }

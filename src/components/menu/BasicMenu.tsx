@@ -3,12 +3,12 @@ import {useContext} from "react";
 import {UserContext} from "../../context/UserProvider";
 
 export function BasicMenu() {
-    const [state,] = useContext(UserContext);
+    const [user,] = useContext(UserContext);
 
     return (
         <Menu items={[
             {
-                img: state.currentUser?.profile_picture ?? "/img/default_user_picture.png",
+                img: user.currentUser?.profile_picture ?? "/img/default_user_picture.png",
                 text: "Profile",
                 href: "/profile",
                 rounded: true
