@@ -4,7 +4,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
-import EditPage from "./pages/EditPage";
+import {ProfileFormPage} from "./pages/subpages/ProfileFormPage";
+import EditPage from "./pages/subpages/EditPage";
 
 export const Router = createBrowserRouter([
     {
@@ -26,10 +27,16 @@ export const Router = createBrowserRouter([
     {
         path: "/profile",
         element: <ProfilePage />,
-    },
-    {
-        path: "/profile/edit",
-        element: <EditPage />
+        children: [
+            {
+                path: "",
+                element: <ProfileFormPage />
+            },
+            {
+                path: "edit",
+                element: <EditPage />
+            },
+        ]
     },
     {
         path: "/dashboard",

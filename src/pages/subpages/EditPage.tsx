@@ -1,12 +1,11 @@
-import {InternPage} from "../components/templates/InternPage";
-import {CardPage} from "../components/templates/CardPage";
-import {BackLink} from "../components/browse/BackLink";
 import React, {useContext, useState} from "react";
-import {updateUserField} from "../database/queries";
-import {UserField} from "../enums/UserField";
-import {UserContext} from "../context/UserProvider";
-import {Form} from "../components/form/Form";
 import {useNavigate} from "react-router-dom";
+import {UserContext} from "../../context/UserProvider";
+import {updateUserField} from "../../database/queries";
+import {UserField} from "../../enums/UserField";
+import {CardPage} from "../../components/templates/CardPage";
+import {BackLink} from "../../components/browse/BackLink";
+import {Form} from "../../components/form/Form";
 
 export default function EditPage() {
     const [user, setUser] = useContext(UserContext);
@@ -52,11 +51,9 @@ export default function EditPage() {
     }
 
     return (
-        <InternPage>
-            <CardPage>
-                <BackLink href={"/profile"}/>
-                <Form submitLabel={"Update"} submitAction={changePassword} error={error} fields={fields}/>
-            </CardPage>
-        </InternPage>
+        <CardPage>
+            <BackLink href={"/profile"}/>
+            <Form submitLabel={"Update"} submitAction={changePassword} error={error} fields={fields}/>
+        </CardPage>
     )
 }
