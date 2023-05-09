@@ -1,6 +1,6 @@
 interface AlternateButtonProperties {
     label: string;
-    action?: () => Promise<void>;
+    action: () => Promise<void>;
 }
 
 export const AlternateButton = ({label, action}: AlternateButtonProperties) => {

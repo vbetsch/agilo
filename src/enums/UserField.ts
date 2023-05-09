@@ -3,4 +3,5 @@ export enum UserField {
     LASTNAME = "lastname",
     EMAIL = "mail",
     PICTURE = "profile_picture",
+    PASSWORD = "authenticationString",
 }

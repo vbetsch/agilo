@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import ErrorNotFoundPage from "./pages/ErrorNotFoundPage";
+import EditPage from "./pages/EditPage";
 
 export const Router = createBrowserRouter([
     {
@@ -24,7 +25,11 @@ export const Router = createBrowserRouter([
     },
     {
         path: "/profile",
-        element: <ProfilePage />
+        element: <ProfilePage />,
+    },
+    {
+        path: "/profile/edit",
+        element: <EditPage />
     },
     {
         path: "/dashboard",

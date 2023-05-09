@@ -117,7 +117,7 @@ export default function ProfilePage() {
                         </div>
                     </div>
                     <div className="profile-buttons">
-                        <AlternateButton label={"Change password"}/>
+                        <AlternateButton label={"Change password"} action={async () => await navigate("/profile/edit")}/>
                         <SubmitButton
                             label={"Logout"}
                             action={() => logout(setUser, navigate, "/login")}
