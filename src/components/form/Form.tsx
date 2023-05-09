@@ -1,14 +1,14 @@
 import {FormField, FormFieldProperties} from "./FormField";
-import {SubmitButton, SubmitButtonProperties} from "../buttons/SubmitButton";
-import {AlternateButton, AlternateButtonProperties} from "../buttons/AlternateButton";
 import React from "react";
 import {ImagePicker, ImagePickerProperties} from "./ImagePicker";
+import {ButtonType} from "../../enums/ButtonTypes";
+import {Button, ButtonProperties} from "../basics/Button";
 
 interface FormProperties {
     fields: Array<FormFieldProperties>
     error: string | undefined
-    submitButton: SubmitButtonProperties
-    alternateButton?: AlternateButtonProperties
+    submitButton: ButtonProperties
+    alternateButton?: ButtonProperties
     imagePicker?: ImagePickerProperties
 }
 
@@ -45,8 +45,8 @@ export function Form({
                 {error && error.length > 0 && <p>{error}</p>}
             </div>
             <div className="form-validate">
-                {alternateButton && (<AlternateButton label={alternateButton.label} action={alternateButton.action}/>)}
-                <SubmitButton label={submitButton.label} action={submitButton.action}/>
+                {alternateButton && (<Button type={ButtonType.ALTERNATE} label={alternateButton.label} action={alternateButton.action}/>)}
+                <Button type={ButtonType.SUBMIT} label={submitButton.label} action={submitButton.action} />
             </div>
         </form>
     );

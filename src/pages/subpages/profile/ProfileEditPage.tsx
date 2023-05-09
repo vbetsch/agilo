@@ -4,8 +4,8 @@ import {UserContext} from "../../../context/UserProvider";
 import {updateUserField} from "../../../database/queries";
 import {UserField} from "../../../enums/UserField";
 import {CardPage} from "../../../components/templates/CardPage";
-import {BackLink} from "../../../components/browse/BackLink";
 import {Form} from "../../../components/form/Form";
+import {BackLink} from "../../../components/basics/BackLink";
 
 export default function ProfileEditPage() {
     const [user, setUser] = useContext(UserContext);
