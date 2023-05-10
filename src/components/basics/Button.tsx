@@ -6,27 +6,19 @@ export interface ButtonProperties {
     type?: ButtonType
 }
 
-export const Button = ({label, action, type}: ButtonProperties) => {
-    let className: string = ButtonType.SUBMIT
-
-    if (type) {
-        className = `button ${type}-button`
-    }
-
-    return (
-        <button
-            className={className}
+export const Button = ({label, action, type}: ButtonProperties) => (
+    <button
+        className={type ? `button ${type}-button` : ButtonType.SUBMIT}
+        type="submit"
+        onClick={(e) => {
+            e.preventDefault();
+            action();
+        }}
+    >
+        <input
+            className="button-text"
             type="submit"
-            onClick={(e) => {
-                e.preventDefault();
-                action();
-            }}
-        >
-            <input
-                className="button-text"
-                type="submit"
-                value={label}
-            />
-        </button>
-    )
-}
+            value={label}
+        />
+    </button>
+)

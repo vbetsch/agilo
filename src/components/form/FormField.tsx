@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React, {SetStateAction} from "react";
 
 export interface FormFieldProperties {
     type: string;
@@ -7,31 +7,29 @@ export interface FormFieldProperties {
     value: string;
     onChange: React.Dispatch<SetStateAction<string>>;
     required?: boolean;
-    editable?: boolean;
     editableAction?: () => Promise<void>;
 }
 
 export function FormField({
-    type,
-    label,
-    placeholder,
-    value,
-    onChange,
-    required,
-    editable,
-    editableAction
-}: FormFieldProperties) {
+                              type,
+                              label,
+                              placeholder,
+                              value,
+                              onChange,
+                              required,
+                              editableAction
+                          }: FormFieldProperties) {
     const labelId = label.replace(/\s/g, "");
 
     return (
         <div className="form-field">
             <label className="form-label" htmlFor={labelId}>
                 {label}
-                {!editable && required && "*"}
+                {!editableAction && required && "*"}
             </label>
 
             <div className="form-input">
-                {editable || required ? (
+                {editableAction || required ? (
                     <input
                         required
                         className="form-input-text"
@@ -54,7 +52,7 @@ export function FormField({
                     />
                 )}
 
-                {editable && (
+                {editableAction && (
                     <img
                         className="form-input-img-edit"
                         src="/svg/edit.svg"
@@ -62,14 +60,14 @@ export function FormField({
                     />
                 )}
 
-                {editable && (
+                {editableAction && (
                     <img
                         className="form-input-img-save"
                         src="/svg/save.svg"
                         alt="save"
                         onClick={(e) => {
                             e.preventDefault();
-                            editableAction && editableAction();
+                            editableAction();
                         }}
                     />
                 )}

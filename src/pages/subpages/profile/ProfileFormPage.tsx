@@ -78,8 +78,8 @@ export function ProfileFormPage() {
                 }}
                 imagePicker={{
                     fileSelector: openFileSelector,
-                    defaultPicture: "/img/default_user_picture.png",
-                    oldPicture: user.currentUser?.profile_picture,
+                    defaultPicturePath: "/img/default_user_picture.png",
+                    oldPicturePath: user.currentUser?.profile_picture,
                     selectedPicture: filesContent[0],
                     submitAction: () => setValue(UserField.PICTURE, filesContent[0].content)
                 }}

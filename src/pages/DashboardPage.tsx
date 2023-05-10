@@ -1,9 +1,7 @@
 import {InternPage} from "../components/templates/InternPage";
 
-export default function DashboardPage() {
-    return (
-        <InternPage>
-            <p>Dashboard</p>
-        </InternPage>
-    )
-}
+export const DashboardPage = () => (
+    <InternPage>
+        <p>Dashboard</p>
+    </InternPage>
+)

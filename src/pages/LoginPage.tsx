@@ -1,8 +1,8 @@
 import {useContext, useState} from "react";
-import AuthPage from "../components/templates/AuthPage";
 import {findUser} from "../database/queries";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../context/UserProvider";
+import {AuthPage} from "../components/templates/AuthPage";
 
 export default function LoginPage() {
     const [, setUser] = useContext(UserContext);

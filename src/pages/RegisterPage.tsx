@@ -1,8 +1,8 @@
 import {useContext, useState} from "react";
-import AuthPage from "../components/templates/AuthPage";
 import {createUser} from "../database/queries"
 import {UserContext} from "../context/UserProvider";
 import {useNavigate} from "react-router-dom";
+import {AuthPage} from "../components/templates/AuthPage";
 
 export default function RegisterPage() {
     const [, setUser] = useContext(UserContext);
