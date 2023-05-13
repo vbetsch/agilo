@@ -16,7 +16,10 @@
     text-decoration: underline;
 }
 .backlink-img {
-    width: 20px;
+    width: 15px;
+}
+.link-txt {
+    font-size: 13px;
 }
 
 /*************************   BUTTONS   ************************/
