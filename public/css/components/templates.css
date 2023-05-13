@@ -51,3 +51,8 @@
     height: 80px;
     width: auto;
 }
+.auth-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

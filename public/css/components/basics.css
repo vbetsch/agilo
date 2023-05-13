@@ -1,16 +1,18 @@
 /*************************   BROWSE   *************************/
-/* BACKLINK */
+/* LINKS */
 .backlink {
     width: 100%;
 }
-.backlink-content {
-    display: flex;
+.link-content {
     color: var(--blue);
     text-decoration: none;
+}
+.backlink-content {
+    display: flex;
     align-items: center;
     gap: 2px;
 }
-.backlink-content:hover {
+.link-content:hover {
     text-decoration: underline;
 }
 .backlink-img {

@@ -6,7 +6,7 @@ interface BackProperties {
 
 export const BackLink = ({href}: BackProperties) => (
     <div className="backlink">
-        <Link className="backlink-content" to={href}>
+        <Link className="link-content backlink-content" to={href}>
             <img className="backlink-img" src="/svg/arrow_left.svg" alt="back"/>
             <span className="backlink-txt">Back</span>
         </Link>
