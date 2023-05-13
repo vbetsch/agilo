@@ -1,13 +1,17 @@
 import React, {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {UserContext} from "../../../context/UserProvider";
-import {updateUserField} from "../../../database/queries";
-import {UserField} from "../../../enums/UserField";
-import {CardPage} from "../../../components/templates/CardPage";
-import {Form} from "../../../components/form/Form";
-import {BackLink} from "../../../components/basics/BackLink";
+import {UserContext} from "../../context/UserProvider";
+import {CardPage} from "../../components/templates/CardPage";
+import {BackLink} from "../../components/basics/BackLink";
+import {Form} from "../../components/form/Form";
+import {updateUserField} from "../../database/queries";
+import {UserField} from "../../enums/UserField";
 
-export default function ProfileEditPage() {
+interface PageProperties {
+    parentPage: string;
+}
+
+export default function EditPasswordSubPage({parentPage}: PageProperties) {
     const [user, setUser] = useContext(UserContext);
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -52,7 +56,7 @@ export default function ProfileEditPage() {
 
     return (
         <CardPage>
-            <BackLink href={"/profile"}/>
+            <BackLink href={parentPage}/>
             <Form submitButton={{label: "Update", action: changePassword}} error={error} fields={fields}/>
         </CardPage>
     )

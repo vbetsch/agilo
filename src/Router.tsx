@@ -1,11 +1,12 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import {LoginPage} from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import {ProfileFormPage} from "./pages/subpages/profile/ProfileFormPage";
-import ProfileEditPage from "./pages/subpages/profile/ProfileEditPage";
 import {ErrorNotFoundPage} from "./pages/ErrorNotFoundPage";
 import {ProfilePage} from "./pages/ProfilePage";
 import {DashboardPage} from "./pages/DashboardPage";
+import EditPasswordSubPage from "./pages/subpages/EditPasswordSubPage";
+import {EditProfileSubPage} from "./pages/subpages/EditProfileSubPage";
+import SignInFormSubPage from "./pages/subpages/SignInFormSubPage";
 
 export const Router = createBrowserRouter([
     {
@@ -18,7 +19,17 @@ export const Router = createBrowserRouter([
     },
     {
         path: "/login",
-        element: <LoginPage />
+        element: <LoginPage />,
+        children: [
+            {
+                path: "",
+                element: <SignInFormSubPage />
+            },
+            {
+                path: "password",
+                element: <EditPasswordSubPage parentPage={"/login"}/>
+            },
+        ]
     },
     {
         path: "/register",
@@ -30,11 +41,11 @@ export const Router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <ProfileFormPage />
+                element: <EditProfileSubPage />
             },
             {
                 path: "edit",
-                element: <ProfileEditPage />
+                element: <EditPasswordSubPage parentPage={"/profile"}/>
             },
         ]
     },

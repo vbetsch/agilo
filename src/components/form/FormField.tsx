@@ -1,4 +1,5 @@
 import React, {SetStateAction} from "react";
+import {DirectLink, DirectLinkProperties} from "../basics/DirectLink";
 
 export interface FormFieldProperties {
     type: string;
@@ -8,6 +9,7 @@ export interface FormFieldProperties {
     onChange: React.Dispatch<SetStateAction<string>>;
     required?: boolean;
     editableAction?: () => Promise<void>;
+    subLink?: DirectLinkProperties;
 }
 
 export function FormField({
@@ -17,9 +19,11 @@ export function FormField({
                               value,
                               onChange,
                               required,
-                              editableAction
+                              editableAction,
+                              subLink
                           }: FormFieldProperties) {
     const labelId = label.replace(/\s/g, "");
+    console.log(subLink)
 
     return (
         <div className="form-field">
@@ -72,6 +76,7 @@ export function FormField({
                     />
                 )}
             </div>
+            {subLink && <DirectLink href={subLink.href} text={subLink.text}/>}
         </div>
     );
 }

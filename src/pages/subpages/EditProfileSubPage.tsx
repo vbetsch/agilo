@@ -1,13 +1,13 @@
 import React, {Dispatch, SetStateAction, useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useFilePicker} from "use-file-picker";
-import {UserContext} from "../../../context/UserProvider";
-import {UserField} from "../../../enums/UserField";
-import {logout, updateUserField} from "../../../database/queries";
-import {Form} from "../../../components/form/Form";
-import {CardPage} from "../../../components/templates/CardPage";
+import {UserContext} from "../../context/UserProvider";
+import {UserField} from "../../enums/UserField";
+import {logout, updateUserField} from "../../database/queries";
+import {Form} from "../../components/form/Form";
+import {CardPage} from "../../components/templates/CardPage";
 
-export function ProfileFormPage() {
+export function EditProfileSubPage() {
     const [user, setUser] = useContext(UserContext);
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState<string>("");

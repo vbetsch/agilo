@@ -36,6 +36,7 @@ export const Form = ({
                     onChange={field.onChange}
                     editableAction={field.editableAction}
                     required={field.required}
+                    subLink={field.subLink}
                 />
             ))}
         </div>
