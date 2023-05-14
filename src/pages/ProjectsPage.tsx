@@ -1,10 +1,11 @@
 import {InternPage} from "../components/templates/InternPage";
 import {BasicPage} from "../components/templates/BasicPage";
+import {Title} from "../components/basics/Title";
 
-export const DashboardPage = () => (
+export const ProjectsPage = () => (
     <InternPage>
         <BasicPage>
-            <p>Dashboard</p>
+            <Title image={"/svg/project.svg"} text={"Projects"}/>
         </BasicPage>
     </InternPage>
 )

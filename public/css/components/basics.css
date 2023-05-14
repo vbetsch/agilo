@@ -1,5 +1,18 @@
-/*************************   BROWSE   *************************/
-/* LINKS */
+/*************************   TITLE   *************************/
+.title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.title-img {
+    height: 30px;
+}
+.title-text {
+    font-weight: 500;
+    font-size: 30px;
+}
+
+/*************************   LINKS   *************************/
 .backlink {
     width: 100%;
 }

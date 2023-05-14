@@ -7,6 +7,13 @@
     width: 100%;
 }
 
+/* BASIC PAGE */
+.basic-page {
+    height: 100vh;
+    width: 100%;
+    padding: 5% 10%;
+}
+
 /* ERROR */
 .page-error {
     width: 100%;

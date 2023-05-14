@@ -7,6 +7,7 @@ import {DashboardPage} from "./pages/DashboardPage";
 import EditPasswordSubPage from "./pages/subpages/EditPasswordSubPage";
 import {EditProfileSubPage} from "./pages/subpages/EditProfileSubPage";
 import SignInFormSubPage from "./pages/subpages/SignInFormSubPage";
+import {ProjectsPage} from "./pages/ProjectsPage";
 
 export const Router = createBrowserRouter([
     {
@@ -52,5 +53,9 @@ export const Router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <DashboardPage />
+    },
+    {
+        path: "/projects",
+        element: <ProjectsPage />
     }
 ])

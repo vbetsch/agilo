@@ -20,7 +20,8 @@ export function BasicMenu() {
             },
             {
                 img: "/svg/project.svg",
-                text: "Projects"
+                text: "Projects",
+                href: "/projects"
             },
             {
                 img: "/svg/settings.svg",
