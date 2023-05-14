@@ -1,11 +1,11 @@
 import React, {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/user/UserProvider";
-import {CardPage} from "../../components/templates/CardPage";
 import {BackLink} from "../../components/basics/BackLink";
 import {Form} from "../../components/form/Form";
 import {updateUserField} from "../../database/queries/UserQueries";
 import {UserField} from "../../enums/UserField";
+import {Card} from "../../components/layouts/Card";
 
 interface PageProperties {
     parentPage: string;
@@ -55,7 +55,7 @@ export default function EditPasswordSubPage({parentPage}: PageProperties) {
     }
 
     return (
-        <CardPage>
+        <Card>
             <BackLink href={parentPage}/>
             <Form submitButton={{label: "Update", action: changePassword}} error={error} fields={fields} validators={[{
                 fieldName: "password",
@@ -65,6 +65,6 @@ export default function EditPasswordSubPage({parentPage}: PageProperties) {
                 containsUpperCase: true,
                 containsSpecialChar: true,
             }]}/>
-        </CardPage>
+        </Card>
     )
 }

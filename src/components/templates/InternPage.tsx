@@ -1,9 +1,10 @@
-import { BasicMenu } from "../menu/BasicMenu";
-import React, { PropsWithChildren, useContext, useEffect } from "react";
-import { UserContext } from "../../context/user/UserProvider";
+import {BasicMenu} from "../menu/BasicMenu";
+import React, {PropsWithChildren, useContext, useEffect} from "react";
+import {UserContext} from "../../context/user/UserProvider";
+import {Page} from "../layouts/Page";
 // import { useNavigate } from "react-router-dom";
 
-export const InternPage: React.FC<PropsWithChildren> = ({ children }) => {
+export const InternPage: React.FC<PropsWithChildren> = ({children}) => {
     // const navigate = useNavigate();
     const [user] = useContext(UserContext);
     useEffect(() => {
@@ -14,9 +15,9 @@ export const InternPage: React.FC<PropsWithChildren> = ({ children }) => {
     }, []);
 
     return (
-        <div className="page">
-            <BasicMenu />
+        <Page>
+            <BasicMenu/>
             <div className="page-content">{children}</div>
-        </div>
+        </Page>
     );
 };

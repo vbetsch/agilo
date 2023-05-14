@@ -5,7 +5,7 @@ import {UserContext} from "../../context/user/UserProvider";
 import {UserField} from "../../enums/UserField";
 import {logout, updateUserField} from "../../database/queries/UserQueries";
 import {Form} from "../../components/form/Form";
-import {CardPage} from "../../components/templates/CardPage";
+import {Card} from "../../components/layouts/Card";
 
 export function EditProfileSubPage() {
     const [user, setUser] = useContext(UserContext);
@@ -66,7 +66,7 @@ export function EditProfileSubPage() {
     ];
 
     return (
-        <CardPage>
+        <Card>
             <Form
                 fields={fields}
                 error={errors.length > 0 && errors[0].fileSizeToolarge ? "Picture picked is too large" : ""}
@@ -86,6 +86,6 @@ export function EditProfileSubPage() {
                     submitAction: () => setValue(UserField.PICTURE, filesContent[0].content)
                 }}
             />
-        </CardPage>
+        </Card>
     )
 }

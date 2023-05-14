@@ -2,7 +2,8 @@ import {useContext, useState} from "react";
 import {createUser} from "../database/queries/UserQueries"
 import {UserContext} from "../context/user/UserProvider";
 import {useNavigate} from "react-router-dom";
-import {AuthPage} from "../components/templates/AuthPage";
+import {AuthCard} from "../components/layouts/AuthCard";
+import {Page} from "../components/layouts/Page";
 
 export default function RegisterPage() {
     const [, setUser] = useContext(UserContext);
@@ -34,49 +35,51 @@ export default function RegisterPage() {
     };
 
     return (
-        <AuthPage formButton={{label: "Register", action: addUser}} formError={error} formFields={[
-            {
-                type: "text",
-                label: "Firstname",
-                line: "top",
-                placeholder: "John",
-                value: firstname,
-                onChange: setFirstname,
-                required: true
-            },
-            {
-                type: "text",
-                label: "Lastname",
-                line: "top",
-                placeholder: "Scott",
-                value: lastname,
-                onChange: setLastname,
-                required: true
-            },
-            {
-                type: "email",
-                label: "Email",
-                placeholder: "john.scott@email.com",
-                value: mail,
-                onChange: setMail,
-                required: true
-            },
-            {
-                type: "password",
-                label: "Password",
-                value: password,
-                onChange: setPassword,
-                required: true,
-                hidden: true
-            },
-            {
-                type: "password",
-                label: "Confirm Password",
-                value: confirmPassword,
-                onChange: setConfirmPassword,
-                required: true,
-                hidden: true
-            }
-        ]}/>
+        <Page>
+            <AuthCard formButton={{label: "Register", action: addUser}} formError={error} formFields={[
+                {
+                    type: "text",
+                    label: "Firstname",
+                    line: "top",
+                    placeholder: "John",
+                    value: firstname,
+                    onChange: setFirstname,
+                    required: true
+                },
+                {
+                    type: "text",
+                    label: "Lastname",
+                    line: "top",
+                    placeholder: "Scott",
+                    value: lastname,
+                    onChange: setLastname,
+                    required: true
+                },
+                {
+                    type: "email",
+                    label: "Email",
+                    placeholder: "john.scott@email.com",
+                    value: mail,
+                    onChange: setMail,
+                    required: true
+                },
+                {
+                    type: "password",
+                    label: "Password",
+                    value: password,
+                    onChange: setPassword,
+                    required: true,
+                    hidden: true
+                },
+                {
+                    type: "password",
+                    label: "Confirm Password",
+                    value: confirmPassword,
+                    onChange: setConfirmPassword,
+                    required: true,
+                    hidden: true
+                }
+            ]}/>
+        </Page>
     )
 }

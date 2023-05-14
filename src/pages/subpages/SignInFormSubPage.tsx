@@ -1,8 +1,8 @@
 import {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/user/UserProvider";
-import {AuthPage} from "../../components/templates/AuthPage";
 import {findUser} from "../../database/queries/UserQueries";
+import {AuthCard} from "../../components/layouts/AuthCard";
 
 export default function SignInFormSubPage() {
     const [, setUser] = useContext(UserContext);
@@ -28,7 +28,7 @@ export default function SignInFormSubPage() {
     };
 
     return (
-        <AuthPage
+        <AuthCard
             formError={error}
             formButton={{
                 label: "Login",

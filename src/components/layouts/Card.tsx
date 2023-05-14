@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from "react";
 
-export const CardPage: React.FC<PropsWithChildren> = ({children}) => (
+export const Card: React.FC<PropsWithChildren> = ({children}) => (
     <div className="card">
         <div className="card-content">
             {children}
