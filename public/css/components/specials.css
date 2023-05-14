@@ -129,6 +129,15 @@
     font-weight: 500;
     width: 30ch;
 }
+
+.form-validator-rule {
+    display: flex;
+    gap: 5px;
+}
+.validator-rule-img {
+    width: 12px;
+}
+
 .form-validate {
     display: flex;
     justify-content: space-around;

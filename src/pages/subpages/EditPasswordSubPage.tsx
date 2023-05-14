@@ -57,7 +57,14 @@ export default function EditPasswordSubPage({parentPage}: PageProperties) {
     return (
         <CardPage>
             <BackLink href={parentPage}/>
-            <Form submitButton={{label: "Update", action: changePassword}} error={error} fields={fields}/>
+            <Form submitButton={{label: "Update", action: changePassword}} error={error} fields={fields} validators={[{
+                fieldName: "password",
+                fieldValue: password,
+                limitChar: 8,
+                containsLowerCase: true,
+                containsUpperCase: true,
+                containsSpecialChar: true,
+            }]}/>
         </CardPage>
     )
 }

@@ -24,7 +24,6 @@ export function FormField({
                               subLink
                           }: FormFieldProperties) {
     const labelId = label.replace(/\s/g, "");
-    console.log(subLink)
 
     return (
         <div className="form-field">
