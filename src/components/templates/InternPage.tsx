@@ -1,6 +1,6 @@
 import { BasicMenu } from "../menu/BasicMenu";
 import React, { PropsWithChildren, useContext, useEffect } from "react";
-import { UserContext } from "../../context/UserProvider";
+import { UserContext } from "../../context/user/UserProvider";
 // import { useNavigate } from "react-router-dom";
 
 export const InternPage: React.FC<PropsWithChildren> = ({ children }) => {

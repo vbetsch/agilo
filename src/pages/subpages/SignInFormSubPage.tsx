@@ -1,8 +1,8 @@
 import {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {UserContext} from "../../context/UserProvider";
+import {UserContext} from "../../context/user/UserProvider";
 import {AuthPage} from "../../components/templates/AuthPage";
-import {findUser} from "../../database/queries";
+import {findUser} from "../../database/queries/UserQueries";
 
 export default function SignInFormSubPage() {
     const [, setUser] = useContext(UserContext);

@@ -1,6 +1,6 @@
 import {useContext, useState} from "react";
-import {createUser} from "../database/queries"
-import {UserContext} from "../context/UserProvider";
+import {createUser} from "../database/queries/UserQueries"
+import {UserContext} from "../context/user/UserProvider";
 import {useNavigate} from "react-router-dom";
 import {AuthPage} from "../components/templates/AuthPage";
 

@@ -1,5 +1,5 @@
-import {User} from "../types/UserType";
-import {Action} from "../types/ActionType";
+import {Action} from "../../types/ActionType";
+import {User} from "../../types/UserType";
 
 export enum UserActionType {
     SET_CURRENT_USER = 'SET_CURRENT_USER',

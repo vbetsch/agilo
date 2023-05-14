@@ -10,13 +10,13 @@ import {
     query,
     where,
 } from "firebase/firestore";
-import {db} from "./firebase";
-import {User} from "../types/UserType";
-import {UserActionType} from "../context/UserReducer";
-import {Action} from "../types/ActionType";
 import {NavigateFunction} from "react-router-dom";
 import React from "react";
-import {UserField} from "../enums/UserField";
+import {User} from "../../types/UserType";
+import {db} from "../firebase";
+import {UserField} from "../../enums/UserField";
+import {Action} from "../../types/ActionType";
+import {UserActionType} from "../../context/user/UserReducer";
 
 export const createUser = async (
     firstname: string,

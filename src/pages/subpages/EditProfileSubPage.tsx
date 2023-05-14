@@ -1,9 +1,9 @@
 import React, {Dispatch, SetStateAction, useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useFilePicker} from "use-file-picker";
-import {UserContext} from "../../context/UserProvider";
+import {UserContext} from "../../context/user/UserProvider";
 import {UserField} from "../../enums/UserField";
-import {logout, updateUserField} from "../../database/queries";
+import {logout, updateUserField} from "../../database/queries/UserQueries";
 import {Form} from "../../components/form/Form";
 import {CardPage} from "../../components/templates/CardPage";
 

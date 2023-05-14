@@ -1,6 +1,6 @@
 import {Menu} from "./Menu";
 import {useContext} from "react";
-import {UserContext} from "../../context/UserProvider";
+import {UserContext} from "../../context/user/UserProvider";
 
 export function BasicMenu() {
     const [user,] = useContext(UserContext);

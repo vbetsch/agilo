@@ -1,6 +1,6 @@
 import React, {createContext, Dispatch, PropsWithChildren, useReducer} from "react";
 import {initialUserState, UserActionType, UserReducer, UserState} from "./UserReducer";
-import {Action} from "../types/ActionType";
+import {Action} from "../../types/ActionType";
 
 export const UserContext = createContext<[UserState, Dispatch<Action<UserActionType>>]>([
     initialUserState,

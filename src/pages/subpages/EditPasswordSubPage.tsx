@@ -1,10 +1,10 @@
 import React, {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {UserContext} from "../../context/UserProvider";
+import {UserContext} from "../../context/user/UserProvider";
 import {CardPage} from "../../components/templates/CardPage";
 import {BackLink} from "../../components/basics/BackLink";
 import {Form} from "../../components/form/Form";
-import {updateUserField} from "../../database/queries";
+import {updateUserField} from "../../database/queries/UserQueries";
 import {UserField} from "../../enums/UserField";
 
 interface PageProperties {
