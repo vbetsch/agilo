@@ -14,7 +14,7 @@ export interface ProjectsState {
 }
 
 export const initialProjectsState: ProjectsState = {
-    loading: true,
+    loading: false,
     projects: [],
 }
 

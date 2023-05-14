@@ -1,13 +1,13 @@
 import {
-    CollectionReference,
-    doc,
     addDoc,
     collection,
-    updateDoc,
+    CollectionReference,
+    doc,
     getDoc,
     getDocs,
     limit,
     query,
+    updateDoc,
     where,
 } from "firebase/firestore";
 import {NavigateFunction} from "react-router-dom";
@@ -18,6 +18,13 @@ import {UserField} from "../../enums/UserField";
 import {Action} from "../../types/ActionType";
 import {UserActionType} from "../../context/user/UserReducer";
 
+function setLoading(dispatch: React.Dispatch<Action<UserActionType>>, status: boolean) {
+    dispatch({
+        type: UserActionType.SET_LOADING,
+        payload: status
+    })
+}
+
 export const createUser = async (
     firstname: string,
     lastname: string,
@@ -27,6 +34,7 @@ export const createUser = async (
     navigate: NavigateFunction,
     redirectPath: string
 ) => {
+    setLoading(dispatch, true);
     try {
         await addDoc<User>(
             collection(db, "users") as CollectionReference<User>,
@@ -41,6 +49,8 @@ export const createUser = async (
         await navigate(redirectPath);
     } catch (e) {
         console.error(e);
+    } finally {
+        setLoading(dispatch, false);
     }
 };
 
@@ -51,7 +61,7 @@ export const findUser = async (
     navigate: NavigateFunction,
     redirectPath: string
 ) => {
-
+    setLoading(dispatch, true);
     try {
         const find = await query(
             collection(db, "users"),
@@ -83,6 +93,8 @@ export const findUser = async (
         await navigate(redirectPath);
     } catch (e) {
         throw e;
+    } finally {
+        setLoading(dispatch, false);
     }
 };
 
@@ -92,6 +104,7 @@ export const updateUserField = async (
     dispatch: React.Dispatch<Action<UserActionType>>,
     userId?: string,
 ) => {
+    setLoading(dispatch, true);
     try {
         if (!userId) {
             throw new Error("User not found")
@@ -118,10 +131,13 @@ export const updateUserField = async (
 
     } catch (e) {
         throw e;
+    } finally {
+        setLoading(dispatch, false);
     }
 }
 
 export const logout = async (dispatch: React.Dispatch<Action<UserActionType>>, navigate: NavigateFunction, redirectPath: string) => {
+    setLoading(dispatch, true);
     try {
         await dispatch({
             type: UserActionType.SET_CURRENT_USER,
@@ -131,5 +147,7 @@ export const logout = async (dispatch: React.Dispatch<Action<UserActionType>>, n
         await navigate(redirectPath);
     } catch (e) {
         throw e;
+    } finally {
+        setLoading(dispatch, false);
     }
 }

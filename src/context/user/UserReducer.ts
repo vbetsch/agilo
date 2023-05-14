@@ -12,7 +12,7 @@ export interface UserState {
 }
 
 export const initialUserState: UserState = {
-    loading: true,
+    loading: false,
     currentUser: undefined,
 }
 

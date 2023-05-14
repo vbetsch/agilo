@@ -6,6 +6,7 @@ import {Form} from "../../components/form/Form";
 import {updateUserField} from "../../database/queries/UserQueries";
 import {UserField} from "../../enums/UserField";
 import {Card} from "../../components/layouts/Card";
+import {Loading} from "../../components/basics/Loading";
 
 interface PageProperties {
     parentPage: string;
@@ -56,15 +57,20 @@ export default function EditPasswordSubPage({parentPage}: PageProperties) {
 
     return (
         <Card>
-            <BackLink href={parentPage}/>
-            <Form submitButton={{label: "Update", action: changePassword}} error={error} fields={fields} validators={[{
-                fieldName: "password",
-                fieldValue: password,
-                limitChar: 8,
-                containsLowerCase: true,
-                containsUpperCase: true,
-                containsSpecialChar: true,
-            }]}/>
+            <div className={user.loading ? "card-content isLoading" : "card-content"}>
+                <BackLink href={parentPage}/>
+                <Form submitButton={{label: "Update", action: changePassword}} error={error} fields={fields} validators={[{
+                    fieldName: "password",
+                    fieldValue: password,
+                    limitChar: 8,
+                    containsLowerCase: true,
+                    containsUpperCase: true,
+                    containsSpecialChar: true,
+                }]}/>
+            </div>
+            {user.loading && (
+                <Loading/>
+            )}
         </Card>
     )
 }

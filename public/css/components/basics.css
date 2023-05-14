@@ -12,6 +12,26 @@
     font-size: 30px;
 }
 
+/*************************   LOADING   *************************/
+.loading {
+    position: absolute;
+    margin: auto;
+    border: 2px solid var(--white);
+    border-radius: 50%;
+    border-top: 2px solid var(--blue);
+    width: 50px;
+    height: 50px;
+    animation: spinner 1s infinite ease-in-out;
+}
+.isLoading {
+    opacity: 0.3;
+    pointer-events: none;
+}
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /*************************   LINKS   *************************/
 .backlink {
     width: 100%;

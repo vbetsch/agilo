@@ -6,7 +6,7 @@ import {AuthCard} from "../components/layouts/AuthCard";
 import {Page} from "../components/layouts/Page";
 
 export default function RegisterPage() {
-    const [, setUser] = useContext(UserContext);
+    const [user, setUser] = useContext(UserContext);
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState<string>("");
     const [mail, setMail] = useState<string>("");
@@ -36,7 +36,7 @@ export default function RegisterPage() {
 
     return (
         <Page>
-            <AuthCard formButton={{label: "Register", action: addUser}} formError={error} formFields={[
+            <AuthCard loading={user.loading} formButton={{label: "Register", action: addUser}} formError={error} formFields={[
                 {
                     type: "text",
                     label: "Firstname",

@@ -33,6 +33,7 @@ export default function SignInFormSubPage() {
 
     return (
         <AuthCard
+            loading={user.loading}
             formError={error}
             formButton={{
                 label: "Login",

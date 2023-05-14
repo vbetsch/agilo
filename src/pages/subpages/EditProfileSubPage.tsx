@@ -6,6 +6,7 @@ import {UserField} from "../../enums/UserField";
 import {logout, updateUserField} from "../../database/queries/UserQueries";
 import {Form} from "../../components/form/Form";
 import {Card} from "../../components/layouts/Card";
+import {Loading} from "../../components/basics/Loading";
 
 export function EditProfileSubPage() {
     const [user, setUser] = useContext(UserContext);
@@ -67,25 +68,30 @@ export function EditProfileSubPage() {
 
     return (
         <Card>
-            <Form
-                fields={fields}
-                error={errors.length > 0 && errors[0].fileSizeToolarge ? "Picture picked is too large" : ""}
-                submitButton={{
-                    label: "Logout",
-                    action: async () => logout(setUser, navigate, "/login")
-                }}
-                alternateButton={{
-                    label: "Change password",
-                    action: async () => await navigate("/profile/edit")
-                }}
-                imagePicker={{
-                    fileSelector: openFileSelector,
-                    defaultPicturePath: "/img/default_user_picture.png",
-                    oldPicturePath: user.currentUser?.profile_picture,
-                    selectedPicture: filesContent[0],
-                    submitAction: () => setValue(UserField.PICTURE, filesContent[0].content)
-                }}
-            />
+            <div className={user.loading ? "card-content isLoading" : "card-content"}>
+                <Form
+                    fields={fields}
+                    error={errors.length > 0 && errors[0].fileSizeToolarge ? "Picture picked is too large" : ""}
+                    submitButton={{
+                        label: "Logout",
+                        action: async () => logout(setUser, navigate, "/login")
+                    }}
+                    alternateButton={{
+                        label: "Change password",
+                        action: async () => await navigate("/profile/edit")
+                    }}
+                    imagePicker={{
+                        fileSelector: openFileSelector,
+                        defaultPicturePath: "/img/default_user_picture.png",
+                        oldPicturePath: user.currentUser?.profile_picture,
+                        selectedPicture: filesContent[0],
+                        submitAction: () => setValue(UserField.PICTURE, filesContent[0].content)
+                    }}
+                />
+            </div>
+            {user.loading && (
+                <Loading/>
+            )}
         </Card>
     )
 }
