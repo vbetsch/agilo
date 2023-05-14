@@ -58,10 +58,7 @@ export const findUser = async (
     mail: string,
     password: string,
     dispatch: React.Dispatch<Action<UserActionType>>,
-    navigate: NavigateFunction,
-    redirectPath: string
 ) => {
-    setLoading(dispatch, true);
     try {
         const find = await query(
             collection(db, "users"),
@@ -89,12 +86,8 @@ export const findUser = async (
                 });
             }
         });
-
-        await navigate(redirectPath);
     } catch (e) {
         throw e;
-    } finally {
-        setLoading(dispatch, false);
     }
 };
 

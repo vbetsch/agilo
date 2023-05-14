@@ -5,6 +5,7 @@ import {findUser} from "../../database/queries/UserQueries";
 import {AuthCard} from "../../components/layouts/AuthCard";
 import {ProjectsContext} from "../../context/projects/ProjectsProvider";
 import {findProjects} from "../../database/queries/ProjectQueries";
+import {UserActionType} from "../../context/user/UserReducer";
 
 export default function SignInFormSubPage() {
     const [user, setUser] = useContext(UserContext);
@@ -16,8 +17,12 @@ export default function SignInFormSubPage() {
 
     const testUser = async () => {
         if (mail.length > 0 && password.length > 0) {
+            setUser({
+                type: UserActionType.SET_LOADING,
+                payload: true
+            })
             try {
-                await findUser(mail, password, setUser, navigate, "/profile");
+                await findUser(mail, password, setUser);
                 await findProjects(user.currentUser?.my_projects, setProjects);
             } catch (e) {
                 if (e instanceof Error) {
@@ -25,6 +30,12 @@ export default function SignInFormSubPage() {
                 } else {
                     console.error(e)
                 }
+            } finally {
+                setUser({
+                    type: UserActionType.SET_LOADING,
+                    payload: false
+                })
+                navigate("/profile")
             }
         } else {
             setError("Please fill in all required fields");

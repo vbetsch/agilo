@@ -16,7 +16,6 @@ export const findProjects = async (
     projects: Array<Project> | undefined,
     dispatch: React.Dispatch<Action<ProjectsActionType>>,
 ) => {
-    setLoading(dispatch, true);
     try {
         if (!projects) {
             throw new Error("Projects not found");
@@ -42,7 +41,5 @@ export const findProjects = async (
         })
     } catch (e) {
         throw e;
-    } finally {
-        setLoading(dispatch, false);
     }
 };
