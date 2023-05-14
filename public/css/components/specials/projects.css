@@ -1,0 +1,29 @@
+/*************************   LIST   *************************/
+.projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5%;
+    row-gap: 10%;
+    width: 60%;
+}
+/*************************   ITEM   *************************/
+.project {
+    display: grid;
+    place-items: end;
+    justify-content: start;
+    width: 230px;
+    height: 240px;
+    border-radius: 50px;
+    padding: 5px 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0 -30px 25px rgba(0, 0, 0, 0.3);
+}
+.project:hover .project-text {
+    font-weight: 600;
+}
+.project-text {
+    font-size: 22px;
+    font-weight: 400;
+}

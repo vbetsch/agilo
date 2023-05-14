@@ -5,7 +5,7 @@ interface TitleProperties {
 
 export const Title = ({image, text}: TitleProperties) => (
     <div className="title">
-        <img className="title-img" src={image} alt={image}/>
+        <img className="title-img" src={image} alt={text}/>
         <h1 className="title-text">{text}</h1>
     </div>
 )
