@@ -9,8 +9,8 @@ export interface User {
     firstname: string,
     lastname: string,
     profile_picture?: string,
-    projects?: Array<Project>,
-    tasks?: Array<Task>,
+    my_projects?: Array<Project>,
+    my_tasks?: Array<Task>,
     notifications?: Array<Notification>,
     preferences?: Map<string, boolean>,
 }
