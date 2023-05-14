@@ -4,7 +4,7 @@ export interface ProjectItemProperties {
 }
 
 export const ProjectItem = ({title, img}: ProjectItemProperties) => (
-    <div className="project" style={{backgroundImage: `url(${img})`}} onClick={() => console.log("TODO: Edit")}>
+    <div className="project" style={{backgroundImage: `url(${img})`}} onClick={() => console.log("TODO: Open")}>
         <p className="project-text">{title}</p>
     </div>
 )
