@@ -46,10 +46,10 @@ export default function SignInFormSubPage() {
                 {
                     type: "password",
                     label: "Password",
-                    placeholder: "****************",
                     value: password,
                     onChange: setPassword,
                     required: true,
+                    hidden: true,
                     subLink: {
                         href: "/login/password",
                         text: "Forget password?"

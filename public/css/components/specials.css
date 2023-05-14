@@ -123,6 +123,10 @@
 {
     display: block;
 }
+.form-input-img-eye {
+    width: 20px;
+    height: 20px;
+}
 
 .form-error {
     color: red;

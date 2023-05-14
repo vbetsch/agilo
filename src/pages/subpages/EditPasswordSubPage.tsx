@@ -22,18 +22,18 @@ export default function EditPasswordSubPage({parentPage}: PageProperties) {
         {
             type: "password",
             label: "Password",
-            placeholder: "****************",
             value: password,
             onChange: setPassword,
-            required: true
+            required: true,
+            hidden: true
         },
         {
             type: "password",
             label: "Confirm Password",
-            placeholder: "****************",
             value: confirmPassword,
             onChange: setConfirmPassword,
-            required: true
+            required: true,
+            hidden: true
         }
     ]
 
