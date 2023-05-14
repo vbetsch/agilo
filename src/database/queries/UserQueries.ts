@@ -38,7 +38,7 @@ export const createUser = async (
             }
         );
 
-        navigate(redirectPath);
+        await navigate(redirectPath);
     } catch (e) {
         console.error(e);
     }
@@ -66,7 +66,7 @@ export const findUser = async (
             throw new Error("Requested credentials do not match any account");
         }
 
-        users.forEach((doc) => {
+        await users.forEach((doc) => {
             const user = doc;
             const data = user.data();
             if (data) {
@@ -80,7 +80,7 @@ export const findUser = async (
             }
         });
 
-        navigate(redirectPath);
+        await navigate(redirectPath);
     } catch (e) {
         throw e;
     }
@@ -97,17 +97,17 @@ export const updateUserField = async (
             throw new Error("User not found")
         }
 
-        const docRef = doc(db, 'users', userId);
+        const docRef = await doc(db, 'users', userId);
 
         await updateDoc(docRef, {
             [field]: value
         });
 
         const user = await getDoc(docRef);
-        const data = user.data();
+        const data = await user.data();
 
         if (data) {
-            dispatch({
+            await dispatch({
                 type: UserActionType.SET_CURRENT_USER,
                 payload: {
                     id: user.id,
@@ -123,12 +123,12 @@ export const updateUserField = async (
 
 export const logout = async (dispatch: React.Dispatch<Action<UserActionType>>, navigate: NavigateFunction, redirectPath: string) => {
     try {
-        dispatch({
+        await dispatch({
             type: UserActionType.SET_CURRENT_USER,
             payload: undefined,
         });
 
-        navigate(redirectPath);
+        await navigate(redirectPath);
     } catch (e) {
         throw e;
     }

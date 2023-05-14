@@ -3,9 +3,12 @@ import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/user/UserProvider";
 import {findUser} from "../../database/queries/UserQueries";
 import {AuthCard} from "../../components/layouts/AuthCard";
+import {ProjectsContext} from "../../context/projects/ProjectsProvider";
+import {findProjects} from "../../database/queries/ProjectQueries";
 
 export default function SignInFormSubPage() {
-    const [, setUser] = useContext(UserContext);
+    const [user, setUser] = useContext(UserContext);
+    const [, setProjects] = useContext(ProjectsContext);
     const [mail, setMail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
@@ -15,6 +18,7 @@ export default function SignInFormSubPage() {
         if (mail.length > 0 && password.length > 0) {
             try {
                 await findUser(mail, password, setUser, navigate, "/profile");
+                await findProjects(user.currentUser?.my_projects, setProjects);
             } catch (e) {
                 if (e instanceof Error) {
                     setError(e.message);

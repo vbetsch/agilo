@@ -7,12 +7,10 @@ import {Page} from "../layouts/Page";
 export const InternPage: React.FC<PropsWithChildren> = ({children}) => {
     // const navigate = useNavigate();
     const [user] = useContext(UserContext);
-    useEffect(() => {
-        if (!user.currentUser) {
-            // navigate("/login");
-            console.log("navigate to /login");
-        }
-    }, []);
+    if (!user.currentUser) {
+        // navigate("/login");
+        console.log("navigate to /login");
+    }
 
     return (
         <Page>

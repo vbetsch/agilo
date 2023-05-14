@@ -72,7 +72,7 @@ export function EditProfileSubPage() {
                 error={errors.length > 0 && errors[0].fileSizeToolarge ? "Picture picked is too large" : ""}
                 submitButton={{
                     label: "Logout",
-                    action: () => logout(setUser, navigate, "/login")
+                    action: async () => logout(setUser, navigate, "/login")
                 }}
                 alternateButton={{
                     label: "Change password",

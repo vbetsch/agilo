@@ -2,18 +2,18 @@ import {Action} from "../../types/ActionType";
 import {User} from "../../types/UserType";
 
 export enum UserActionType {
+    SET_LOADING = 'SET_LOADING',
     SET_CURRENT_USER = 'SET_CURRENT_USER',
-    SET_LOADING = 'SET_LOADING'
 }
 
 export interface UserState {
-    currentUser: User | undefined
     loading: boolean
+    currentUser: User | undefined
 }
 
 export const initialUserState: UserState = {
+    loading: true,
     currentUser: undefined,
-    loading: true
 }
 
 export const UserReducer = (state: UserState, action: Action<UserActionType>) => {
@@ -22,6 +22,7 @@ export const UserReducer = (state: UserState, action: Action<UserActionType>) =>
             return {
                 ...state,
                 currentUser: action.payload,
+                loading: false,
             };
         case UserActionType.SET_LOADING:
             return {

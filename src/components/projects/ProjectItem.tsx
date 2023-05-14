@@ -1,6 +1,6 @@
 export interface ProjectItemProperties {
     title: string
-    img: string
+    img?: string
 }
 
 export const ProjectItem = ({title, img}: ProjectItemProperties) => (
