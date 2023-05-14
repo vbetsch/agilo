@@ -1,53 +1,10 @@
-/*************************   MENU   *************************/
-.menu {
-    background-color: var(--dark-grey);
-    width: 350px;
-    height: 100%;
-}
-.menu-content {
-    padding: 50px;
-}
-.menu-content-logo {
-    width: 100%;
-}
-.menu-items {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* MENU ITEM */
-.menu-item {
-    padding: 0 40px;
-}
-.menu-item-text:hover {
-    opacity: 0.8;
-}
-.menu-item-content {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 10px;
-}
-.menu-item-link {
-    text-decoration: none;
-    color: var(--white);
-}
-.menu-item-img {
-    height: 25px;
-    width: 25px;
-}
-.menu-item-text {
-    font-size: 20px;
-}
-
-/*************************   FORM   *************************/
 .form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/*************************   HEAD   *************************/
 .form-head-content {
     display: grid;
     place-items: center;
@@ -77,6 +34,7 @@
     filter: blur(2px);
 }
 
+/*************************   FIELDS   *************************/
 .form-fields {
     display: flex;
     flex-direction: column;
@@ -95,6 +53,8 @@
 .form-fields-line .form-field .form-input {
     width: 120px;
 }
+
+/*************************   INPUTS   *************************/
 .form-input {
     width: 280px;
     display: flex;
@@ -127,13 +87,14 @@
     width: 20px;
     height: 20px;
 }
-
+/*************************   ERRORS   *************************/
 .form-error {
     color: red;
     font-weight: 500;
     width: 30ch;
 }
 
+/*************************   VALIDATOR   *************************/
 .form-validator-rule {
     display: flex;
     gap: 5px;
@@ -142,6 +103,7 @@
     width: 12px;
 }
 
+/*************************   BOTTOM   *************************/
 .form-validate {
     display: flex;
     justify-content: space-around;

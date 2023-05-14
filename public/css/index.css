@@ -3,7 +3,10 @@
 @import url(main.css);
 @import url(common.css);
 
-/* COMPONENTS */
+/*************************   COMPONENTS   *************************/
 @import url(components/basics.css);
-@import url(components/specials.css);
 @import url(components/templates.css);
+
+/* SPECIALS */
+@import url(components/specials/form.css);
+@import url(components/specials/menu.css);

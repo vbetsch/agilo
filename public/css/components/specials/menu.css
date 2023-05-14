@@ -1,0 +1,41 @@
+.menu {
+    background-color: var(--dark-grey);
+    width: 350px;
+    height: 100%;
+}
+.menu-content {
+    padding: 50px;
+}
+.menu-content-logo {
+    width: 100%;
+}
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/*************************   MENU ITEM   *************************/
+.menu-item {
+    padding: 0 40px;
+}
+.menu-item-text:hover {
+    opacity: 0.8;
+}
+.menu-item-content {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 10px;
+}
+.menu-item-link {
+    text-decoration: none;
+    color: var(--white);
+}
+.menu-item-img {
+    height: 25px;
+    width: 25px;
+}
+.menu-item-text {
+    font-size: 20px;
+}
