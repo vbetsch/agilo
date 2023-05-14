@@ -26,27 +26,46 @@ export const Form = ({
                          submitAction={imagePicker.submitAction}/>
         )}
         <div className="form-fields">
-            {fields.map((field, index) => (
-                <FormField
-                    key={index}
-                    type={field.type}
-                    label={field.label}
-                    placeholder={field.placeholder}
-                    value={field.value}
-                    onChange={field.onChange}
-                    editableAction={field.editableAction}
-                    required={field.required}
-                    subLink={field.subLink}
-                />
-            ))}
+            <div className="form-fields-line">
+                {fields.filter((field) => field.line).map((field, index) => (
+                        <FormField
+                            key={index}
+                            type={field.type}
+                            label={field.label}
+                            placeholder={field.placeholder}
+                            value={field.value}
+                            onChange={field.onChange}
+                            editableAction={field.editableAction}
+                            required={field.required}
+                            subLink={field.subLink}
+                        />
+                    )
+                )}
+            </div>
+            {fields.filter((field) => !field.line).map((field, index) => (
+                    <FormField
+                        key={index}
+                        type={field.type}
+                        label={field.label}
+                        placeholder={field.placeholder}
+                        value={field.value}
+                        onChange={field.onChange}
+                        editableAction={field.editableAction}
+                        required={field.required}
+                        subLink={field.subLink}
+                    />
+                )
+            )}
         </div>
         <div className="form-error">
             {error && error.length > 0 && <p>{error}</p>}
         </div>
         <div className="form-validate">
             {alternateButton && (
-                <Button type={ButtonType.ALTERNATE} label={alternateButton.label} action={alternateButton.action}/>)}
+                <Button type={ButtonType.ALTERNATE} label={alternateButton.label}
+                        action={alternateButton.action}/>)}
             <Button type={ButtonType.SUBMIT} label={submitButton.label} action={submitButton.action}/>
         </div>
     </form>
 )
+

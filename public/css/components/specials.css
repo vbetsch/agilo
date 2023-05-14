@@ -80,12 +80,20 @@
 .form-fields {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
+}
+.form-fields-line {
+    display: flex;
+    gap: 10px;
 }
 .form-field {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+.form-fields-line .form-field .form-input {
+    width: 120px;
 }
 .form-input {
     width: 280px;

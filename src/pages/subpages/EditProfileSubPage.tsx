@@ -37,6 +37,7 @@ export function EditProfileSubPage() {
         {
             type: "text",
             label: "Firstname",
+            line: "top",
             placeholder: user.currentUser?.firstname ?? "",
             value: firstname,
             editable: true,
@@ -46,6 +47,7 @@ export function EditProfileSubPage() {
         {
             type: "text",
             label: "Lastname",
+            line: "top",
             placeholder: user.currentUser?.lastname ?? "",
             value: lastname,
             editable: true,

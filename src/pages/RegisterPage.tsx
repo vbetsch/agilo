@@ -38,6 +38,7 @@ export default function RegisterPage() {
             {
                 type: "text",
                 label: "Firstname",
+                line: "top",
                 placeholder: "John",
                 value: firstname,
                 onChange: setFirstname,
@@ -46,6 +47,7 @@ export default function RegisterPage() {
             {
                 type: "text",
                 label: "Lastname",
+                line: "top",
                 placeholder: "Scott",
                 value: lastname,
                 onChange: setLastname,

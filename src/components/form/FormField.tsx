@@ -7,6 +7,7 @@ export interface FormFieldProperties {
     placeholder: string;
     value: string;
     onChange: React.Dispatch<SetStateAction<string>>;
+    line?: string;
     required?: boolean;
     editableAction?: () => Promise<void>;
     subLink?: DirectLinkProperties;
