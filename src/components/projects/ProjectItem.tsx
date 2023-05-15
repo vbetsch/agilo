@@ -2,7 +2,7 @@ import {useContext} from "react";
 import {ProjectsContext} from "../../context/projects/ProjectsProvider";
 import {ProjectsActionType} from "../../context/projects/ProjectsReducer";
 import {Project} from "../../types/ProjectType";
-import {findProject} from "../../database/queries/ProjectQueries";
+import {useNavigate} from "react-router-dom";
 
 export interface ProjectItemProperties {
     project: Project
@@ -10,17 +10,25 @@ export interface ProjectItemProperties {
 
 export function ProjectItem({project}: ProjectItemProperties) {
     const [, dispatch] = useContext(ProjectsContext)
+    const navigate = useNavigate()
 
     const openProject = async () => {
-        console.log("Open " + project.label)
-        const [currentProject, projectData] = await findProject(project.id)
-        if (currentProject && projectData) {
-            dispatch({
+        await dispatch({
+            type: ProjectsActionType.SET_LOADING,
+            payload: true
+        })
+        try {
+            await dispatch({
                 type: ProjectsActionType.SET_CURRENT_PROJECT,
-                payload: {
-                    id: currentProject.id,
-                    ...projectData
-                }
+                payload: project
+            })
+            navigate("/projects/" + project.id)
+        } catch(e) {
+            console.error(e)
+        } finally {
+            await dispatch({
+                type: ProjectsActionType.SET_LOADING,
+                payload: false
             })
         }
     }

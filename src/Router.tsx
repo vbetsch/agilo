@@ -8,6 +8,8 @@ import EditPasswordSubPage from "./pages/subpages/EditPasswordSubPage";
 import {EditProfileSubPage} from "./pages/subpages/EditProfileSubPage";
 import SignInFormSubPage from "./pages/subpages/SignInFormSubPage";
 import {ProjectsPage} from "./pages/ProjectsPage";
+import {Kanban} from "./pages/subpages/Kanban";
+import {ProjectsList} from "./pages/subpages/ProjectsList";
 
 export const Router = createBrowserRouter([
     {
@@ -56,6 +58,16 @@ export const Router = createBrowserRouter([
     },
     {
         path: "/projects",
-        element: <ProjectsPage />
+        element: <ProjectsPage />,
+        children: [
+            {
+                path: "",
+                element: <ProjectsList />
+            },
+            {
+                path: ":projectId",
+                element: <Kanban />
+            }
+        ]
     }
 ])
