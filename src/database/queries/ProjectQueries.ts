@@ -1,9 +1,26 @@
 import {Project} from "../../types/ProjectType";
-import {doc, getDoc} from "firebase/firestore";
+import {collection, doc, getDoc, limit, query, where} from "firebase/firestore";
 import {db} from "../firebase";
 import React from "react";
 import {Action} from "../../types/ActionType";
 import {ProjectsActionType} from "../../context/projects/ProjectsReducer";
+
+export const findProject = async (
+    id?: string
+) => {
+    if (!id) {
+        throw new Error("Project not found");
+    }
+
+    try {
+        const project = await getDoc(doc(db, 'projects', id));
+        const data = await project.data();
+
+        return [project, data]
+    } catch(e) {
+        throw e;
+    }
+}
 
 export const findProjects = async (
     projects: Array<Project> | undefined,
@@ -19,12 +36,7 @@ export const findProjects = async (
         }
 
         projects.map(async (project) => {
-            if (!project.id) {
-                throw new Error("Project not found");
-            }
-
-            const newProject = await getDoc(doc(db, 'projects', project.id));
-            const data = await newProject.data();
+            const [, data] = await findProject(project.id);
 
             if (data) {
                 await dispatch({

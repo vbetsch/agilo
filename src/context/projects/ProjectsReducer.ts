@@ -5,16 +5,19 @@ export enum ProjectsActionType {
     SET_LOADING = 'SET_LOADING',
     ADD_PROJECT = 'ADD_PROJECT',
     SET_PROJECTS = 'SET_PROJECTS',
+    SET_CURRENT_PROJECT = 'SET_CURRENT_PROJECT',
 }
 
 export interface ProjectsState {
     loading: boolean
     projects: Array<Project>
+    currentProject: Project | undefined
 }
 
 export const initialProjectsState: ProjectsState = {
     loading: false,
     projects: [],
+    currentProject: undefined
 }
 
 export const ProjectsReducer = (state: ProjectsState, action: Action<ProjectsActionType>) => {
@@ -32,6 +35,11 @@ export const ProjectsReducer = (state: ProjectsState, action: Action<ProjectsAct
                     action.payload,
                     ...state.projects,
                 ],
+            };
+        case ProjectsActionType.SET_CURRENT_PROJECT:
+            return {
+                ...state,
+                currentProject: action.payload,
             };
         case ProjectsActionType.SET_LOADING:
             return {

@@ -36,7 +36,7 @@ export function ProjectsPage() {
 
     return (
         <BasicPage>
-            <Title image={"/svg/project.svg"} text={"Projects"}/>
+            <Title image={"/svg/project.svg"} text={"Projects"} subTitle={projects.currentProject?.label}/>
             <ProjectsList projects={projects.projects} loading={projects.loading}/>
         </BasicPage>
     )

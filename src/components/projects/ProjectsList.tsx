@@ -14,7 +14,7 @@ export function ProjectsList({projects, loading}: ProjectsListProperties) {
                 <Loading/>
             )}
             {projects.map((project, index) => (
-                <ProjectItem key={index} title={project.label} img={project.picture} />
+                <ProjectItem key={index} project={project}/>
             ))}
             <div className="project" style={{placeItems: "center", justifyContent: "center", boxShadow: "none"}}>
                 <img src="/svg/plus.svg" alt="+" onClick={() => console.log("TODO: Add")}/>
