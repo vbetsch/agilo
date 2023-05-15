@@ -23,7 +23,6 @@ export default function SignInFormSubPage() {
             })
             try {
                 await findUser(mail, password, setUser);
-                await findProjects(user.currentUser?.my_projects, setProjects);
             } catch (e) {
                 if (e instanceof Error) {
                     setError(e.message);

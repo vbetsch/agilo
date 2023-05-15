@@ -4,13 +4,10 @@ import {db} from "../firebase";
 import React from "react";
 import {Action} from "../../types/ActionType";
 import {ProjectsActionType} from "../../context/projects/ProjectsReducer";
-
-function setLoading(dispatch: React.Dispatch<Action<ProjectsActionType>>, status: boolean) {
-    dispatch({
-        type: ProjectsActionType.SET_LOADING,
-        payload: status
-    })
-}
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import DocumentData = firebase.firestore.DocumentData;
 
 export const findProjects = async (
     projects: Array<Project> | undefined,

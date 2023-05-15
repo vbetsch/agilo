@@ -1,13 +1,18 @@
 import { Project } from "../../types/ProjectType";
 import {ProjectItem} from "./ProjectItem";
+import {Loading} from "../basics/Loading";
 
 interface ProjectsListProperties {
     projects: Array<Project>
+    loading: boolean
 }
 
-export function ProjectsList({projects}: ProjectsListProperties) {
+export function ProjectsList({projects, loading}: ProjectsListProperties) {
     return (
         <div className="projects">
+            {loading && (
+                <Loading/>
+            )}
             {projects.map((project, index) => (
                 <ProjectItem key={index} title={project.label} img={project.picture} />
             ))}

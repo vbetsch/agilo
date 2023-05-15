@@ -1,6 +1,5 @@
 import {Project} from "../../types/ProjectType";
 import {Action} from "../../types/ActionType";
-import {UserActionType} from "../user/UserReducer";
 
 export enum ProjectsActionType {
     SET_LOADING = 'SET_LOADING',
