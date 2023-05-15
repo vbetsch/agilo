@@ -7,7 +7,7 @@ import {TasksList} from "../../components/tasks/TasksList";
 import {StatusValues} from "../../enums/StatusValues";
 
 export function Kanban() {
-    const [projects, dispatch] = useContext(ProjectsContext);
+    const [state, dispatch] = useContext(ProjectsContext);
     const { projectId } = useParams();
 
     const loadProject = async () => {
@@ -21,7 +21,7 @@ export function Kanban() {
                 if (projectFound && data) {
                     dispatch({
                         type: ProjectsActionType.SET_CURRENT_PROJECT,
-                        payload: projects.projects.filter((p) => p.id === projectFound.id)[0]
+                        payload: state.projects.filter((p) => p.id === projectFound.id)[0]
                     })
                 }
             } catch (e) {
@@ -45,11 +45,10 @@ export function Kanban() {
 
     return (
         <div className="kanban">
-            {projects.currentProject && <p>{projects.currentProject.picture}</p>}
             <div className="tasklists">
-                <TasksList status={StatusValues.TODO}/>
-                <TasksList status={StatusValues.IN_PROGRESS}/>
-                <TasksList status={StatusValues.DONE}/>
+                <TasksList status={StatusValues.TODO} tasks={state.currentProject?.tasks}/>
+                <TasksList status={StatusValues.IN_PROGRESS} tasks={state.currentProject?.tasks}/>
+                <TasksList status={StatusValues.DONE} tasks={state.currentProject?.tasks}/>
             </div>
         </div>
     )

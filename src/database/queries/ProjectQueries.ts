@@ -1,5 +1,5 @@
 import {Project} from "../../types/ProjectType";
-import {collection, doc, getDoc, limit, query, where} from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
 import {db} from "../firebase";
 import React from "react";
 import {Action} from "../../types/ActionType";

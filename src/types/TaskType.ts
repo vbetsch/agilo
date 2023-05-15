@@ -8,10 +8,10 @@ export interface Task {
     title: string,
     creator: User,
     creation_date: Date | Timestamp,
+    project: Project,
+    status: StatusValues,
     last_editor?: User,
     edit_date?: Date | Timestamp,
-    status: StatusValues,
     due_date?: Date | Timestamp,
     assignees?: Array<User>,
-    project: Project,
 }
