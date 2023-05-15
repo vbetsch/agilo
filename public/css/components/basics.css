@@ -16,6 +16,13 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
+/*************************   STATUS   *************************/
+.status-text {
+    width: fit-content;
+    padding: 1px 12px;
+    border-radius: 20px;
+}
+
 /*************************   LOADING   *************************/
 .loading {
     position: absolute;

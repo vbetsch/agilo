@@ -3,6 +3,8 @@ import {findProject} from "../../database/queries/ProjectQueries";
 import {ProjectsActionType} from "../../context/projects/ProjectsReducer";
 import {useContext, useEffect} from "react";
 import {ProjectsContext} from "../../context/projects/ProjectsProvider";
+import {TasksList} from "../../components/tasks/TasksList";
+import {StatusValues} from "../../enums/StatusValues";
 
 export function Kanban() {
     const [projects, dispatch] = useContext(ProjectsContext);
@@ -43,8 +45,12 @@ export function Kanban() {
 
     return (
         <div className="kanban">
-            <p>Kanban</p>
             {projects.currentProject && <p>{projects.currentProject.picture}</p>}
+            <div className="tasklists">
+                <TasksList status={StatusValues.TODO}/>
+                <TasksList status={StatusValues.IN_PROGRESS}/>
+                <TasksList status={StatusValues.DONE}/>
+            </div>
         </div>
     )
 }

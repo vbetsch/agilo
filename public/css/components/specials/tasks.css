@@ -1,0 +1,15 @@
+/*************************   LIST   *************************/
+.tasklists {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 10%;
+    height: 70vh;
+    width: 70%;
+}
+.tasklist {
+    border-radius: 25px;
+    background-color: var(--dark-grey);
+    padding: 20px;
+}
+
+/*************************   ITEM   *************************/

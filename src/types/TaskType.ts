@@ -1,7 +1,7 @@
 import { Timestamp } from "firebase/firestore";
 import type {User} from "./UserType";
-import {Status} from "../enums/Status";
 import type {Project} from "./ProjectType";
+import {StatusValues} from "../enums/StatusValues";
 
 export interface Task {
     id?: string,
@@ -10,7 +10,7 @@ export interface Task {
     creation_date: Date | Timestamp,
     last_editor?: User,
     edit_date?: Date | Timestamp,
-    status: Status,
+    status: StatusValues,
     due_date?: Date | Timestamp,
     assignees?: Array<User>,
     project: Project,

@@ -1,6 +1,15 @@
 .background-blue {
     background-color: var(--blue);
 }
+.background-red {
+    background-color: var(--red);
+}
+.background-orange {
+    background-color: var(--orange);
+}
+.background-green {
+    background-color: var(--green);
+}
 
 .rounded {
     border-radius: 15px;
