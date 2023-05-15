@@ -7,6 +7,19 @@ import {Action} from "../../types/ActionType";
 import {TasksActionType} from "../../context/tasks/TasksReducer";
 import React from "react";
 
+function getAdderSetter(status: StatusValues) {
+    switch(status) {
+        case StatusValues.TODO:
+            return [TasksActionType.ADD_TODO_TASK, TasksActionType.SET_TODO_TASKS];
+        case StatusValues.IN_PROGRESS:
+            return [TasksActionType.ADD_PROGRESS_TASK, TasksActionType.SET_PROGRESS_TASKS];
+        case StatusValues.DONE:
+            return [TasksActionType.ADD_DONE_TASK, TasksActionType.SET_DONE_TASKS];
+        default:
+            return [TasksActionType.ADD_TODO_TASK, TasksActionType.SET_TODO_TASKS];
+    }
+}
+
 export const findTask = async (taskId: string) => {
     try {
         const task = await getDoc(doc(db, 'tasks', taskId));
@@ -27,32 +40,37 @@ export const findTasks = async (
         throw new Error("Tasks not found");
     }
 
-    await dispatch({
-        type: TasksActionType.SET_TASKS,
-        payload: []
-    })
+    const [adder, setter] = getAdderSetter(status)
 
-    try {
-        tasksId.map(async (id) => {
-            if (id) {
-                const [task, data] = await findTask(id)
+    if (adder && setter) {
+        await dispatch({
+            type: setter,
+            payload: []
+        })
 
-                if (task) {
-                    const statusTask = await task.get("status");
+        try {
+            tasksId.map(async (id) => {
+                if (id) {
+                    const [task, data] = await findTask(id)
 
-                    if (data && statusTask === status) {
-                        await dispatch({
-                            type: TasksActionType.ADD_TASK,
-                            payload: {
-                                id: id,
-                                ...data
-                            }
-                        })
+                    if (task) {
+                        const statusTask = await task.get("status");
+
+                        if (data && statusTask === status) {
+                            await dispatch({
+                                type: adder,
+                                payload: {
+                                    id: id,
+                                    ...data
+                                }
+                            })
+                        }
                     }
                 }
-            }
-        })
-    } catch (e) {
-        throw e;
+            })
+        } catch (e) {
+            throw e;
+        }
     }
+
 }

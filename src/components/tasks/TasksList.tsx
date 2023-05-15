@@ -2,7 +2,7 @@ import {StatusValues} from "../../enums/StatusValues";
 import {Status} from "../basics/Status";
 import {findTasks} from "../../database/queries/TaskQueries";
 import {Task} from "../../types/TaskType";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {TaskContext} from "../../context/tasks/TasksProvider";
 
 export interface TasksListProperties {
@@ -12,6 +12,22 @@ export interface TasksListProperties {
 
 export function TasksList({status, tasks}: TasksListProperties) {
     const [state, dispatch] = useContext(TaskContext);
+    const statusTasks = getTasks(status)
+
+    function getTasks(status: StatusValues) {
+        if (state.tasks) {
+            switch (status) {
+                case StatusValues.TODO:
+                    return state.tasks.todo;
+                case StatusValues.IN_PROGRESS:
+                    return state.tasks.progress;
+                case StatusValues.DONE:
+                    return state.tasks.done;
+                default:
+                    return undefined;
+            }
+        }
+    }
 
     const loadTasks = async () => {
         if (tasks) {
@@ -23,11 +39,16 @@ export function TasksList({status, tasks}: TasksListProperties) {
         }
     }
 
+    useEffect(() => {
+        loadTasks()
+            .then()
+            .catch((e) => console.error(e))
+    }, [])
+
     return (
         <div className="tasklist">
             <Status status={status}/>
-            <button onClick={loadTasks}>Load</button>
-            {state.tasks && state.tasks.map((task, index) => (
+            {statusTasks && statusTasks.map((task, index) => (
                 <p key={index}>{task.title}</p>
             ))}
         </div>
