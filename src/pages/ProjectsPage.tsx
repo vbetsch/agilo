@@ -30,7 +30,7 @@ export function ProjectsPage() {
 
     useEffect(() => {
         loadProjects()
-            .then((r) => console.log(r))
+            .then(() => console.log(projects.projects))
             .catch((e) => console.error(e));
     }, [])
 
