@@ -1,5 +1,6 @@
 import {Task} from "../../types/TaskType";
 import {Action} from "../../types/ActionType";
+import {User} from "../../types/UserType";
 
 export enum TasksActionType {
     SET_LOADING = 'SET_LOADING',
@@ -9,11 +10,14 @@ export enum TasksActionType {
     ADD_TODO_TASK = 'ADD_TODO_TASK',
     ADD_PROGRESS_TASK = 'ADD_PROGRESS_TASK',
     ADD_DONE_TASK = 'ADD_DONE_TASK',
+    SET_ASSIGNEES = 'SET_ASSIGNEES',
+    ADD_ASSIGNEE = 'ADD_ASSIGNEE',
 }
 
 export interface TasksState {
     loading: boolean
     tasks: { todo: Array<Task>, progress: Array<Task>, done: Array<Task> }
+    assignees: Array<User>
 }
 
 export const initialTasksState: TasksState = {
@@ -23,6 +27,7 @@ export const initialTasksState: TasksState = {
         progress: [],
         done: []
     },
+    assignees: []
 }
 
 export const TasksReducer = (state: TasksState, action: Action<TasksActionType>) => {
@@ -97,6 +102,19 @@ export const TasksReducer = (state: TasksState, action: Action<TasksActionType>)
                         action.payload
                     ],
                 },
+            };
+        case TasksActionType.SET_ASSIGNEES:
+            return {
+                ...state,
+                assignees: action.payload,
+            };
+        case TasksActionType.ADD_ASSIGNEE:
+            return {
+                ...state,
+                assignees: [
+                    ...state.assignees,
+                    action.payload,
+                ]
             };
         default:
             return state

@@ -6,6 +6,7 @@ import {StatusValues} from "../../enums/StatusValues";
 import {Action} from "../../types/ActionType";
 import {TasksActionType} from "../../context/tasks/TasksReducer";
 import React from "react";
+import {User} from "../../types/UserType";
 
 function getAdderSetter(status: StatusValues) {
     switch(status) {
@@ -72,5 +73,38 @@ export const findTasks = async (
             throw e;
         }
     }
+}
 
+export const findUsers = async (
+    users: Array<User> | undefined,
+    dispatch: React.Dispatch<Action<TasksActionType>>
+) => {
+    await dispatch({
+        type: TasksActionType.SET_ASSIGNEES,
+        payload: []
+    })
+
+    try {
+        if (!users) {
+            throw new Error("Assignees not found");
+        }
+
+        users.map(async (user) => {
+            // @ts-ignore
+            const userFound = await getDoc(doc(db, 'users', user.id));
+            const data = await userFound.data();
+
+            if (data) {
+                await dispatch({
+                    type: TasksActionType.ADD_ASSIGNEE,
+                    payload: {
+                        id: user.id,
+                        ...data,
+                    }
+                })
+            }
+        })
+    } catch (e) {
+        throw e;
+    }
 }

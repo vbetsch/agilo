@@ -5,9 +5,6 @@ import {Task} from "../../types/TaskType";
 import {useContext, useEffect} from "react";
 import {TaskContext} from "../../context/tasks/TasksProvider";
 import {TaskItem} from "./TaskItem";
-import {User} from "../../types/UserType";
-import {Timestamp} from "firebase/firestore";
-import {Project} from "../../types/ProjectType";
 
 export interface TasksListProperties {
     status: StatusValues
