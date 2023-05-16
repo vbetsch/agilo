@@ -6,10 +6,10 @@ import {StatusValues} from "../enums/StatusValues";
 export interface Task {
     id?: string,
     title: string,
-    creator: User,
+    creator?: User,
     creation_date: Date | Timestamp,
-    project: Project,
-    status: StatusValues,
+    project?: Project,
+    status?: StatusValues,
     last_editor?: User,
     edit_date?: Date | Timestamp,
     due_date?: Date | Timestamp,

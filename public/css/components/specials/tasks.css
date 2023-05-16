@@ -7,9 +7,32 @@
     width: 70%;
 }
 .tasklist {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     border-radius: 25px;
     background-color: var(--dark-grey);
     padding: 20px;
 }
+.tasklist-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 /*************************   ITEM   *************************/
+.task {
+    background-color: var(--light-grey);
+    border-radius: 20px;
+    padding: 10px 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.task-date {
+    opacity: 0.5;
+    font-style: italic;
+    font-size: 14px;
+}
+.task-title {
+    font-size: 18px;
+}

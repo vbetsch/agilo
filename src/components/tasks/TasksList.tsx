@@ -4,6 +4,10 @@ import {findTasks} from "../../database/queries/TaskQueries";
 import {Task} from "../../types/TaskType";
 import {useContext, useEffect} from "react";
 import {TaskContext} from "../../context/tasks/TasksProvider";
+import {TaskItem} from "./TaskItem";
+import {User} from "../../types/UserType";
+import {Timestamp} from "firebase/firestore";
+import {Project} from "../../types/ProjectType";
 
 export interface TasksListProperties {
     status: StatusValues
@@ -48,9 +52,11 @@ export function TasksList({status, tasks}: TasksListProperties) {
     return (
         <div className="tasklist">
             <Status status={status}/>
-            {statusTasks && statusTasks.map((task, index) => (
-                <p key={index}>{task.title}</p>
-            ))}
+            <div className="tasklist-tasks">
+                {statusTasks && statusTasks.map((task, index) => (
+                    <TaskItem key={index} task={task}/>
+                ))}
+            </div>
         </div>
     )
 }
