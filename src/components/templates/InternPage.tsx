@@ -9,7 +9,7 @@ export const InternPage: React.FC<PropsWithChildren> = ({children}) => {
     const [user] = useContext(UserContext);
     if (!user.currentUser) {
         // navigate("/login");
-        console.log("navigate to /login");
+        // console.log("navigate to /login");
     }
 
     return (

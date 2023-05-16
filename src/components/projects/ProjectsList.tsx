@@ -11,7 +11,7 @@ export function ProjectsList() {
 
     useEffect(() => {
         loadProjects(setProjects, user.currentUser?.my_projects)
-            .then(() => console.log(projects.projects))
+            .then()
             .catch((e) => console.error(e));
     }, [])
 

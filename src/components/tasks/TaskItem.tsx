@@ -15,14 +15,14 @@ export function TaskItem({task}: TaskItemProperties) {
     const tasksId = state.assignees.map((user) => user.my_tasks?.map((task) => task.id))
 
     state.assignees && tasksId && state.assignees.map(assignee => {
-        assignee.my_tasks && assignee.my_tasks?.map((task) => console.log(task.id))
+        // assignee.my_tasks && assignee.my_tasks?.map((task) => console.log(task.id))
         assigneesNames += `, ${assignee.firstname}`
     })
 
     const loadAssignees = async (assignees?: Array<User>) => {
         try {
             await findUsers(assignees, dispatch);
-            console.log(state.assignees)
+            // console.log(state.assignees)
         } catch (e) {
             console.error(e)
         }

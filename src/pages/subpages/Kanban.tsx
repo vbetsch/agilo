@@ -39,7 +39,7 @@ export function Kanban() {
 
     useEffect(() => {
         loadProject()
-            .then(r => console.log(r))
+            .then()
             .catch(e => console.error(e))
     }, [])
 

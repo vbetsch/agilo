@@ -36,7 +36,7 @@ export function Projects() {
 
     useEffect(() => {
         loadProjects(setProjects, user.currentUser?.my_projects)
-            .then(() => console.log(projects.projects))
+            .then()
             .catch((e) => console.error(e));
     }, [])
 
@@ -49,7 +49,7 @@ export function Projects() {
                 <ProjectItem key={index} project={project}/>
             ))}
             <div className="project" style={{placeItems: "center", justifyContent: "center", boxShadow: "none"}}>
-                <img src="/svg/plus.svg" alt="+" onClick={() => console.log("TODO: Add")}/>
+                <img src="/svg/plus.svg" alt="+"/>
             </div>
         </div>
     )
