@@ -7,7 +7,7 @@ Task manager inspired by Notion app
 
 ## Linux & MacOS
 ### Installation
-1. Create your firebase config file and named it `.env.local` at the root of the project
+1. Copy `.env.example` file from root of the project, paste to same place, fill each field and named it `.env`
 ```dotenv
 VITE_API_KEY="your_api_key"
 VITE_AUTH_DOMAIN="your_auth_domain"
@@ -27,7 +27,7 @@ make run
 ```bash
 npm install
 ```
-2. Create your firebase config file and named it `.env.local` at the root of the project
+2. Copy `.env.example` file from root of the project, paste to same place, fill each field and named it `.env`
 ```dotenv
 VITE_API_KEY="your_api_key"
 VITE_AUTH_DOMAIN="your_auth_domain"
