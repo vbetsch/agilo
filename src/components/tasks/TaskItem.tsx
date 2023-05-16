@@ -38,7 +38,7 @@ export function TaskItem({task}: TaskItemProperties) {
         <div className="task">
             <p className="task-date">{formatFirebaseDate(task.creation_date)}</p>
             <p className="task-title">{task.title}</p>
-            <p>{assigneesNames}</p>
+            {/*<p>{assigneesNames}</p>*/}
         </div>
     )
 }
