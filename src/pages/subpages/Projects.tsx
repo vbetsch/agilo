@@ -20,7 +20,7 @@ export const loadProjects = async (dispatch: React.Dispatch<Action<ProjectsActio
     try {
         await findProjects(projects, dispatch);
     } catch (e) {
-        console.error(e)
+        // console.error(e)
     } finally {
         dispatch({
             type: ProjectsActionType.SET_LOADING,
