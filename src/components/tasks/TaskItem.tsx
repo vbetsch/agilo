@@ -24,7 +24,7 @@ export function TaskItem({task}: TaskItemProperties) {
             await findUsers(assignees, dispatch);
             // console.log(state.assignees)
         } catch (e) {
-            console.error(e)
+            // console.error(e)
         }
     }
 
