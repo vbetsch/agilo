@@ -9,7 +9,7 @@ import {EditProfileSubPage} from "./pages/subpages/EditProfileSubPage";
 import SignInFormSubPage from "./pages/subpages/SignInFormSubPage";
 import {ProjectsPage} from "./pages/ProjectsPage";
 import {Kanban} from "./pages/subpages/Kanban";
-import {ProjectsList} from "./pages/subpages/ProjectsList";
+import {Projects} from "./pages/subpages/Projects";
 
 export const Router = createBrowserRouter([
     {
@@ -62,7 +62,7 @@ export const Router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <ProjectsList />
+                element: <Projects />
             },
             {
                 path: ":projectId",
