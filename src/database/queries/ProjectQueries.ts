@@ -14,7 +14,7 @@ export const findProject = async (
 
     try {
         const project = await getDoc(doc(db, 'projects', id));
-        const data = await project.data();
+        const data = project.data();
 
         return [project, data]
     } catch(e) {
@@ -26,20 +26,20 @@ export const findProjects = async (
     projects: Array<Project> | undefined,
     dispatch: React.Dispatch<Action<ProjectsActionType>>,
 ) => {
-    await dispatch({
+    dispatch({
         type: ProjectsActionType.SET_PROJECTS,
         payload: [],
     });
     try {
         if (!projects) {
-            throw new Error("Projects not found");
+            return new Error("Projects not found");
         }
 
         projects.map(async (project) => {
             const [, data] = await findProject(project.id);
 
             if (data) {
-                await dispatch({
+                dispatch({
                     type: ProjectsActionType.ADD_PROJECT,
                     payload: {
                         id: project.id,

@@ -46,7 +46,7 @@ export const createUser = async (
             }
         );
 
-        await navigate(redirectPath);
+        navigate(redirectPath);
     } catch (e) {
         console.error(e);
     } finally {
@@ -60,7 +60,7 @@ export const findUser = async (
     dispatch: React.Dispatch<Action<UserActionType>>,
 ) => {
     try {
-        const find = await query(
+        const find = query(
             collection(db, "users"),
             where("mail", "==", mail),
             where("authenticationString", "==", password),
@@ -70,10 +70,10 @@ export const findUser = async (
         const users = await getDocs(find);
 
         if (users.size !== 1) {
-            throw new Error("Requested credentials do not match any account");
+            return new Error("Requested credentials do not match any account");
         }
 
-        await users.forEach((doc) => {
+        users.forEach((doc) => {
             const user = doc;
             const data = user.data();
             if (data) {
@@ -100,20 +100,20 @@ export const updateUserField = async (
     setLoading(dispatch, true);
     try {
         if (!userId) {
-            throw new Error("User not found")
+            return new Error("User not found")
         }
 
-        const docRef = await doc(db, 'users', userId);
+        const docRef = doc(db, 'users', userId);
 
         await updateDoc(docRef, {
             [field]: value
         });
 
         const user = await getDoc(docRef);
-        const data = await user.data();
+        const data = user.data();
 
         if (data) {
-            await dispatch({
+            dispatch({
                 type: UserActionType.SET_CURRENT_USER,
                 payload: {
                     id: user.id,
@@ -132,12 +132,12 @@ export const updateUserField = async (
 export const logout = async (dispatch: React.Dispatch<Action<UserActionType>>, navigate: NavigateFunction, redirectPath: string) => {
     setLoading(dispatch, true);
     try {
-        await dispatch({
+        dispatch({
             type: UserActionType.SET_CURRENT_USER,
             payload: undefined,
         });
 
-        await navigate(redirectPath);
+        navigate(redirectPath);
     } catch (e) {
         throw e;
     } finally {

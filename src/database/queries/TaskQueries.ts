@@ -24,7 +24,7 @@ function getAdderSetter(status: StatusValues) {
 export const findTask = async (taskId: string) => {
     try {
         const task = await getDoc(doc(db, 'tasks', taskId));
-        const data = await task.data();
+        const data = task.data();
 
         return [task, data]
     } catch(e) {
@@ -44,7 +44,7 @@ export const findTasks = async (
     const [adder, setter] = getAdderSetter(status)
 
     if (adder && setter) {
-        await dispatch({
+        dispatch({
             type: setter,
             payload: []
         })
@@ -58,7 +58,7 @@ export const findTasks = async (
                         const statusTask = await task.get("status");
 
                         if (data && statusTask === status) {
-                            await dispatch({
+                            dispatch({
                                 type: adder,
                                 payload: {
                                     id: id,
@@ -79,23 +79,23 @@ export const findUsers = async (
     users: Array<User> | undefined,
     dispatch: React.Dispatch<Action<TasksActionType>>
 ) => {
-    await dispatch({
+    dispatch({
         type: TasksActionType.SET_ASSIGNEES,
         payload: []
     })
 
     try {
         if (!users) {
-            throw new Error("Assignees not found");
+            return new Error("Assignees not found");
         }
 
         users.map(async (user) => {
             // @ts-ignore
             const userFound = await getDoc(doc(db, 'users', user.id));
-            const data = await userFound.data();
+            const data = userFound.data();
 
             if (data) {
-                await dispatch({
+                dispatch({
                     type: TasksActionType.ADD_ASSIGNEE,
                     payload: {
                         id: user.id,
